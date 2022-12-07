@@ -66,6 +66,9 @@ const Dashboard = () => {
               <div className="collapse-content">
                 <ul className="menu bg-base-100 text-base-content ">
                   <li className=" text-sm  font-medium">
+                    <Link to="/dashboard/addProduct">All Products</Link>
+                  </li>
+                  <li className=" text-sm  font-medium">
                     <Link to="/dashboard/addProduct">Add Product</Link>
                   </li>
                   <li className="text-sm  font-medium">
