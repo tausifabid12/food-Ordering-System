@@ -11,6 +11,7 @@ import Cart from "../Pages&Components/Pages/Cart/Cart";
 import Restaurants from "../Pages&Components/Pages/Restaurants/Restaurants";
 import Dashboard from "../Layouts/Dashboard/Dashboard";
 import AddProducts from "../Pages&Components/Pages/AddProducts/AddProducts";
+import RestaurantRegister from "../Pages&Components/Pages/RestaurantRegister/RestaurantRegister";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/signUp",
         element: <SignUp />,
+      },
+      {
+        path: "/restaurantReg",
+        element: <RestaurantRegister />,
       },
       // {
       //   path: "/AllRestaurant",
