@@ -1,8 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
+import { useContext } from "react";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import loginImg from "../../../Assets/login.jpg";
+import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
+const SignUp = () => {
+  const [error, setError] = useState("");
+  const [isAdded, setIsAdded] = useState(true);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { createUser } = useContext(AuthContext);
 
-const signUp = () => {
+  const handleSignUp = (data, e) => {
+    setIsAdded(false);
+    const { email, password } = data;
+    createUser(email, password)
+      .then((result) => {
+        if (result?.user?.uid) {
+          fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              authorization: `bearer ${localStorage.getItem("accessToken")}`,
+            },
+            body: JSON.stringify(data),
+          })
+            .then((res) => res.json())
+            .then((result) => {
+              if (result.status) {
+                e.target.reset();
+                toast.success("Sign up  successful", {
+                  position: "top-center",
+                });
+                setError("");
+                setIsAdded(true);
+              } else {
+                e.target.reset();
+                setIsAdded(true);
+              }
+            });
+        } else {
+          setIsAdded(true);
+        }
+      })
+      .catch((error) => {
+        setIsAdded(true);
+        setError(error.message);
+        console.log(error);
+      });
+  };
   return (
     <div className="bg-gray-200 h-screen  w-full grid grid-cols-2 ">
       <div className="text-center lg:text-left">
@@ -13,43 +63,49 @@ const signUp = () => {
           <h1 className="text-3xl font-bold text-center text-primary">
             Sign up
           </h1>
+          <span className="text-red-500 font-bold mt-10 text-center">
+            {error}
+          </span>
           <form
-            novalidate=""
-            action=""
+            onSubmit={handleSubmit(handleSignUp)}
             className="space-y-6 ng-untouched ng-pristine ng-valid"
           >
             <div className="space-y-1 text-sm">
-              <label for="username" className="block ">
+              <label htmlFor="username" className="block ">
                 Username
               </label>
               <input
                 type="text"
                 name="username"
                 id="username"
+                {...register("username", { required: true })}
                 placeholder="Username"
                 className="w-full px-4 py-3 rounded-md border-2 "
               />
+              {errors.username && <span>This field is required</span>}
             </div>
             <div className="space-y-1 text-sm">
-              <label for="email" className="block ">
+              <label htmlFor="email" className="block ">
                 Email
               </label>
               <input
                 type="email"
                 name="email"
                 id="email"
+                {...register("email", { required: true })}
                 placeholder="email"
                 className="w-full px-4 py-3 rounded-md border-2 "
               />
             </div>
             <div className="space-y-1 text-sm">
-              <label for="password" className="block ">
+              <label htmlFor="password" className="block ">
                 Password
               </label>
               <input
                 type="password"
                 name="password"
                 id="password"
+                {...register("password", { required: true })}
                 placeholder="Password"
                 className="w-full px-4 py-3 rounded-md border-2  "
               />
@@ -59,9 +115,15 @@ const signUp = () => {
                 </a>
               </div>
             </div>
-            <button className="btn btn-primary text-white w-full ">
-              Sign up
-            </button>
+            <div className="w-full">
+              {isAdded ? (
+                <button className="btn btn-primary text-white w-full ">
+                  Sign up
+                </button>
+              ) : (
+                <button className="btn loading w-full">loading</button>
+              )}
+            </div>
           </form>
           <div className="flex items-center pt-4 space-x-1">
             <div className="flex-1 h-px sm:w-16 dark:dark:bg-gray-700"></div>
@@ -114,4 +176,4 @@ const signUp = () => {
   );
 };
 
-export default signUp;
+export default SignUp;

@@ -9,6 +9,8 @@ import SignUp from "../Pages&Components/Pages/SignUp/SignUp";
 import Restaurant from "../Pages&Components/Pages/Restaurant/Restaurant";
 import Cart from "../Pages&Components/Pages/Cart/Cart";
 import Restaurants from "../Pages&Components/Pages/Restaurants/Restaurants";
+import Dashboard from "../Layouts/Dashboard/Dashboard";
+import AddProducts from "../Pages&Components/Pages/AddProducts/AddProducts";
 
 const router = createBrowserRouter([
   {
@@ -43,11 +45,20 @@ const router = createBrowserRouter([
         path: "/signUp",
         element: <SignUp />,
       },
-
       // {
       //   path: "/AllRestaurant",
       //   element: <AllRestaurant />,
       // },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "/dashboard/addProduct",
+        element: <AddProducts />,
+      },
     ],
   },
 ]);

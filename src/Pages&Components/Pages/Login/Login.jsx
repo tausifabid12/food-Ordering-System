@@ -1,8 +1,43 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import loginImg from "../../../Assets/login.jpg";
+import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
+  const [error, setError] = useState("");
+  const [isAdded, setIsAdded] = useState(true);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { login } = useContext(AuthContext);
+
+  const handleLogin = (data, e) => {
+    setIsAdded(false);
+    const { email, password } = data;
+    login(email, password)
+      .then((result) => {
+        if (result?.user?.uid) {
+          e.target.reset();
+          toast.success("login successful", {
+            position: "top-center",
+          });
+          setError("");
+          setIsAdded(true);
+        }
+      })
+      .catch((error) => {
+        e.target.reset();
+        setError(error.message);
+        setIsAdded(true);
+        console.log(error.message);
+      });
+  };
+
   return (
     <div className="bg-gray-200 h-screen  w-full grid grid-cols-2 ">
       <div className="text-center lg:text-left">
@@ -11,31 +46,35 @@ const Login = () => {
       <div className="p-16">
         <div className="w-full bg-white  p-12 space-y-3 rounded-xl shadow-lg">
           <h1 className="text-3xl font-bold text-center text-primary">Login</h1>
+          <span className="text-red-500 font-bold mt-10 text-center">
+            {error}
+          </span>
           <form
-            novalidate=""
-            action=""
+            onSubmit={handleSubmit(handleLogin)}
             className="space-y-6 ng-untouched ng-pristine ng-valid"
           >
             <div className="space-y-1 text-sm">
-              <label for="username" className="block ">
-                Username
+              <label htmlFor="email" className="block ">
+                Email
               </label>
               <input
-                type="text"
-                name="username"
-                id="username"
-                placeholder="Username"
+                type="email"
+                name="email"
+                id="email"
+                {...register("email", { required: true })}
+                placeholder="email"
                 className="w-full px-4 py-3 rounded-md border-2 "
               />
             </div>
             <div className="space-y-1 text-sm">
-              <label for="password" className="block ">
+              <label htmlFor="password" className="block ">
                 Password
               </label>
               <input
                 type="password"
                 name="password"
                 id="password"
+                {...register("password", { required: true })}
                 placeholder="Password"
                 className="w-full px-4 py-3 rounded-md border-2  "
               />
@@ -45,9 +84,15 @@ const Login = () => {
                 </a>
               </div>
             </div>
-            <button className="btn btn-primary text-white w-full ">
-              Sign in
-            </button>
+            <div className="w-full">
+              {isAdded ? (
+                <button className="btn btn-primary text-white w-full ">
+                  Sign in
+                </button>
+              ) : (
+                <button className="btn loading w-full">loading</button>
+              )}
+            </div>
           </form>
           <div className="flex items-center pt-4 space-x-1">
             <div className="flex-1 h-px sm:w-16 dark:dark:bg-gray-700"></div>

@@ -16,7 +16,7 @@ module.exports = {
 
           neutral: "#232131",
 
-          "base-100": "#F5F5FA",
+          "base-100": "#f1f1f1",
 
           info: "#7EBDF1",
 

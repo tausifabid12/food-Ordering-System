@@ -37,6 +37,15 @@ const Hero = () => {
           className="input  rounded-lg text-primary bg-accent  mt-5 mx-4 w-full max-w-xs"
         />
       </div>
+      <div className="collapse">
+        <input type="checkbox" />
+        <div className="collapse-title text-xl font-medium">
+          Click me to show/hide content
+        </div>
+        <div className="collapse-content">
+          <p>hello</p>
+        </div>
+      </div>
     </div>
   );
 };
