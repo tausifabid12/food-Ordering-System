@@ -21,13 +21,14 @@ const SignUp = () => {
     createUser(email, password)
       .then((result) => {
         if (result?.user?.uid) {
+          const userInfo = { email, password, role: "user" };
           fetch("http://localhost:5000/users", {
             method: "POST",
             headers: {
               "content-type": "application/json",
               authorization: `bearer ${localStorage.getItem("accessToken")}`,
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(userInfo),
           })
             .then((res) => res.json())
             .then((result) => {

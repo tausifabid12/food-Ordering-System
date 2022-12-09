@@ -24,7 +24,7 @@ const Restaurant = () => {
           </div>
           <div>Add to favarite</div>
         </div>
-        <div className="flex justify-between p-8">
+        <div className="flex justify-between py-8 px-16">
           <p>Rating </p>
           <p>Location</p>
           <p>Delivery Time</p>

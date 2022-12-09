@@ -12,6 +12,8 @@ import Restaurants from "../Pages&Components/Pages/Restaurants/Restaurants";
 import Dashboard from "../Layouts/Dashboard/Dashboard";
 import AddProducts from "../Pages&Components/Pages/AddProducts/AddProducts";
 import RestaurantRegister from "../Pages&Components/Pages/RestaurantRegister/RestaurantRegister";
+import RegisterDeliveryMan from "../Pages&Components/Pages/RegisterDeliveryMan/RegisterDeliveryMan";
+import DashBoardRestaurantInfo from "../Pages&Components/Pages/DashBoardRestaurantInfo/DashBoardRestaurantInfo";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +52,10 @@ const router = createBrowserRouter([
         path: "/restaurantReg",
         element: <RestaurantRegister />,
       },
+      {
+        path: "/deliveryManReg",
+        element: <RegisterDeliveryMan />,
+      },
       // {
       //   path: "/AllRestaurant",
       //   element: <AllRestaurant />,
@@ -63,6 +69,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/addProduct",
         element: <AddProducts />,
+      },
+      {
+        path: "/dashboard/addRestaurant",
+        element: <RestaurantRegister />,
+      },
+      {
+        path: "/dashboard/allRestaurant",
+        element: <DashBoardRestaurantInfo />,
       },
     ],
   },

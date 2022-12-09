@@ -17,6 +17,7 @@ const Navbar = () => {
       <li>
         <Link to="/dashboard">Dashboard</Link>
       </li>
+
       {user?.uid ? (
         ""
       ) : (
@@ -144,7 +145,7 @@ const Navbar = () => {
                 className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <Link>As a Delivery Man</Link>
+                  <Link to="/deliveryManReg">As a Delivery Man</Link>
                 </li>
                 <li>
                   <Link to="/restaurantReg">As a Restaurant</Link>

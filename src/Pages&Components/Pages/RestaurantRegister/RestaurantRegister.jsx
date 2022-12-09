@@ -10,7 +10,7 @@ const RestaurantRegister = () => {
     formState: { errors },
   } = useForm();
 
-  const handleRegister = (data) => {
+  const handleRegister = (data, e) => {
     setIsAdded(false);
     const {
       userName,
@@ -46,6 +46,7 @@ const RestaurantRegister = () => {
             deliveryTime,
             minOrder,
             coverImg: imgUrl,
+            approved: false,
           };
           fetch(`http://localhost:5000/addRestaurant`, {
             method: "POST",
@@ -59,12 +60,18 @@ const RestaurantRegister = () => {
             .then((data) => {
               console.log(data);
               if (data.status) {
-                toast.success("product added successfully", {
-                  position: "top-center",
-                });
+                toast.success(
+                  "You have resisted successfully please wait for admin conformation",
+                  {
+                    position: "top-center",
+                    autoClose: 10000,
+                  }
+                );
+                e.target.reset();
                 setIsAdded(true);
               } else {
                 setIsAdded(true);
+                e.target.reset();
               }
             });
         }
@@ -73,15 +80,7 @@ const RestaurantRegister = () => {
   return (
     <section className="bg-base-100 dark:bg-gray-900">
       <div className="flex justify-center min-h-screen">
-        <div
-          className="hidden bg-cover lg:block lg:w-2/5"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1494621930069-4fd4b2e24a11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80')",
-          }}
-        ></div>
-
-        <div className="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
+        <div className="flex items-center w-full  p-8 mx-auto ">
           <div className="w-full">
             <h1 className="text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white">
               Get your free account now.
@@ -94,7 +93,7 @@ const RestaurantRegister = () => {
 
             <form
               onSubmit={handleSubmit(handleRegister)}
-              className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2"
+              className="grid  gap-6 mt-8 grid-cols-2"
             >
               <div>
                 <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
@@ -198,7 +197,7 @@ const RestaurantRegister = () => {
                   <span className="text-red-500 pt-2">This is required</span>
                 )}
               </div> */}
-              <div>
+              <div className="col-span-2 lg:col-span-1">
                 <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                   Cover Photo
                 </label>
@@ -213,7 +212,7 @@ const RestaurantRegister = () => {
                 )}
               </div>
 
-              <div>
+              <div className="col-span-2 lg:col-span-1">
                 <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                   Password
                 </label>
