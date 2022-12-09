@@ -67,16 +67,8 @@ const RegisterDeliveryMan = () => {
 
   return (
     <section class="bg-white dark:bg-gray-900">
-      <div class="flex justify-center min-h-screen">
-        <div
-          class="hidden bg-cover lg:block lg:w-2/5"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1494621930069-4fd4b2e24a11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80')",
-          }}
-        ></div>
-
-        <div class="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
+      <div class="flex justify-center min-h-screen ">
+        <div class="flex items-center w-full p-8 mx-auto lg:px-12 ">
           <div class="w-full">
             <h1 class="text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white">
               Get your free account now.

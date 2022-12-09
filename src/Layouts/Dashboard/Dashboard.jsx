@@ -9,7 +9,7 @@ const Dashboard = () => {
       <Navbar />
       <div className="drawer drawer-mobile relative">
         <input id="dashboardDrawer" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col  ">
+        <div className="drawer-content flex flex-col py-4 px-10">
           {/* <!-- Page content here --> */}
           <Outlet></Outlet>
           <label
@@ -95,10 +95,10 @@ const Dashboard = () => {
               <div className="collapse-content">
                 <ul className="menu bg-base-100 text-base-content ">
                   <li className=" text-sm  font-medium">
-                    <Link to="/dashboard/addProduct">All Delivery Man</Link>
+                    <Link to="/dashboard/allDeliveryMan">All Delivery Man</Link>
                   </li>
                   <li className="text-sm  font-medium">
-                    <Link to="/dashboard/addProduct">Add Delivery Man</Link>
+                    <Link to="/dashboard/allDeliveryMan">Add Delivery Man</Link>
                   </li>
                   <li className=" text-sm  font-medium">
                     <Link to="/dashboard/addProduct">Reviews</Link>

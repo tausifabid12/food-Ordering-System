@@ -14,6 +14,7 @@ import AddProducts from "../Pages&Components/Pages/AddProducts/AddProducts";
 import RestaurantRegister from "../Pages&Components/Pages/RestaurantRegister/RestaurantRegister";
 import RegisterDeliveryMan from "../Pages&Components/Pages/RegisterDeliveryMan/RegisterDeliveryMan";
 import DashBoardRestaurantInfo from "../Pages&Components/Pages/DashBoardRestaurantInfo/DashBoardRestaurantInfo";
+import DashBoardDeliveryMan from "../Pages&Components/Pages/DashBoardDeliveryMan/DashBoardDeliveryMan";
 
 const router = createBrowserRouter([
   {
@@ -77,6 +78,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/allRestaurant",
         element: <DashBoardRestaurantInfo />,
+      },
+      {
+        path: "/dashboard/addDeliveryMan",
+        element: <DashBoardDeliveryMan />,
+      },
+      {
+        path: "/dashboard/allDeliveryMan",
+        element: <RegisterDeliveryMan />,
       },
     ],
   },
