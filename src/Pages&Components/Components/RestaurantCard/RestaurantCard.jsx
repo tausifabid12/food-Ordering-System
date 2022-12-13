@@ -15,7 +15,7 @@ const RestaurantCard = ({ info }) => {
   } = info;
   return (
     <Link to={`/restaurant/${_id}`}>
-      <div className="card min-w-[200px] md:w-full max-h-60 card-compact bg-base-100 rounded-md shadow-md">
+      <div className="card min-w-[200px] md:w-full h-60 card-compact bg-base-100 rounded-md shadow-md">
         <figure>
           <img src={coverImg} alt="Restaurant" />
         </figure>
