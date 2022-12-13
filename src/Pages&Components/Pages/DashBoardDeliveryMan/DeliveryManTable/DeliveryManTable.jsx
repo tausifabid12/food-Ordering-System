@@ -1,6 +1,12 @@
 import React from "react";
 
-const DeliveryManTable = ({ header, body }) => {
+const DeliveryManTable = ({
+  header,
+  body,
+  handleAction,
+  loading,
+  handleDelete,
+}) => {
   return (
     <div className="overflow-x-auto w-full">
       <table className="table w-full">
@@ -25,9 +31,29 @@ const DeliveryManTable = ({ header, body }) => {
                     {data?.email}
                   </span> */}
                 </td>
-                <td>{data?.deliveryManType}</td>
+                <td>
+                  <button
+                    onClick={() => handleAction(data?._id)}
+                    className={`btn btn-xs ${
+                      data?.approved
+                        ? "btn-disabled"
+                        : `${loading ? "btn-loading" : "btn-success"}`
+                    } `}
+                  >
+                    {data?.approved ? "Approved" : "Approve"}
+                  </button>
+                </td>
                 <th>
-                  <button className="btn btn-error btn-xs">delete</button>
+                  <button
+                    onClick={() => {
+                      handleDelete(data?._id);
+                    }}
+                    className={`btn btn-xs ${
+                      loading ? "btn-loading" : "btn-error"
+                    }  `}
+                  >
+                    delete
+                  </button>
                 </th>
               </tr>
             ))}

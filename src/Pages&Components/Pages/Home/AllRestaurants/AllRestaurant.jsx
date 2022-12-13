@@ -6,9 +6,9 @@ const AllRestaurant = () => {
     queryKey: ["restaurants"],
     queryFn: () =>
       fetch(`http://localhost:5000/allRestaurants`, {
-        // headers: {
-        //   authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        // },
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
       }).then((res) => res.json()),
   });
   return (

@@ -98,7 +98,7 @@ const Dashboard = () => {
                     <Link to="/dashboard/allDeliveryMan">All Delivery Man</Link>
                   </li>
                   <li className="text-sm  font-medium">
-                    <Link to="/dashboard/allDeliveryMan">Add Delivery Man</Link>
+                    <Link to="/dashboard/addDeliveryMan">Add Delivery Man</Link>
                   </li>
                   <li className=" text-sm  font-medium">
                     <Link to="/dashboard/addProduct">Reviews</Link>

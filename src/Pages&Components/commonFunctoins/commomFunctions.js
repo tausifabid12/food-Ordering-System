@@ -1,15 +1,20 @@
-export const uploadImg = (formData) => {
-  let imgUrl;
-  const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_IMAGEBB_API_KEY}`;
-
-  fetch(url, {
+export const handleDelete = (id) => {
+  fetch(`http://localhost:5000/allRestaurants/${id}`, {
     method: "POST",
-    body: formData,
+    headers: {
+      "content-type": "application/json",
+      authorization: `bearer ${localStorage.getItem("accessToken")}`,
+    },
+    body: JSON.stringify({ approved: true }),
   })
     .then((res) => res.json())
-    .then((imgData) => {
-      imgUrl = imgData?.data?.url;
+    .then((data) => {
+      console.log(data);
+      if (data.status) {
+        refetch();
+        toast.success("restaurant approved", {
+          position: "top-center",
+        });
+      }
     });
-
-  return imgUrl;
 };

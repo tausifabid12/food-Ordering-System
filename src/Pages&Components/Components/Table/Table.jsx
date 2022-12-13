@@ -1,6 +1,6 @@
 import React from "react";
 
-const Table = ({ header, body }) => {
+const Table = ({ header, body, handleAction, handleDelete, loading }) => {
   return (
     <div className="overflow-x-auto w-full">
       <table className="table w-full">
@@ -35,12 +35,28 @@ const Table = ({ header, body }) => {
                   </span>
                 </td>
                 <td>
-                  <button className="btn btn-xs btn-success">
+                  <button
+                    onClick={() => handleAction(data?._id)}
+                    className={`btn btn-xs ${
+                      data?.approved
+                        ? "btn-disabled"
+                        : `${loading ? "btn-loading" : "btn-success"}`
+                    } `}
+                  >
                     {data?.approved ? "Approved" : "Approve"}
                   </button>
                 </td>
                 <th>
-                  <button className="btn btn-error btn-xs">delete</button>
+                  <button
+                    onClick={() => {
+                      handleDelete(data?._id);
+                    }}
+                    className={`btn btn-xs ${
+                      loading ? "btn-loading" : "btn-error"
+                    }  `}
+                  >
+                    delete
+                  </button>
                 </th>
               </tr>
             ))}
