@@ -15,7 +15,7 @@ const AllRestaurantCard = ({ info }) => {
   } = info;
   return (
     <Link to={`/restaurant/${_id}`}>
-      <div className="card card-side w-full h-40  lg:h-48  p-2 bg-base-100 rounded-md shadow-md">
+      <div className="card card-side w-full h-40  lg:h-44  p-2 bg-base-100 rounded-md shadow-md">
         <div className=" w-5/12 rounded-md">
           <img
             src={coverImg}

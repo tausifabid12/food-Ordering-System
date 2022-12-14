@@ -1,14 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
 const RestaurantRegister = () => {
   const [isAdded, setIsAdded] = useState(true);
+  const { createUser } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
+
+  //handleRegister
+  // *1st img hosting
+  // *2nd posting restaurant info
+  // *3rd  creating firebase user
+  // *4th posting userInfo to DB
 
   const handleRegister = (data, e) => {
     setIsAdded(false);
@@ -20,15 +30,12 @@ const RestaurantRegister = () => {
       deliveryTime,
       minOrder,
       coverImg,
+      password,
     } = data;
-    console.log(data);
-
     const image = coverImg[0];
     const formData = new FormData();
     formData.append("image", image);
-
     const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_IMAGEBB_API_KEY}`;
-
     fetch(url, {
       method: "POST",
       body: formData,
@@ -36,7 +43,6 @@ const RestaurantRegister = () => {
       .then((res) => res.json())
       .then((imgData) => {
         const imgUrl = imgData?.data?.url;
-
         if (imgUrl) {
           const restaurantInfo = {
             userName,
@@ -58,17 +64,47 @@ const RestaurantRegister = () => {
           })
             .then((res) => res.json())
             .then((data) => {
-              console.log(data);
               if (data.status) {
-                toast.success(
-                  "You have resisted successfully please wait for admin conformation",
-                  {
-                    position: "top-center",
-                    autoClose: 10000,
+                createUser(email, password).then((result) => {
+                  if (result?.user?.uid) {
+                    console.log(result.user, "from create user");
+                    const userInfo = {
+                      email,
+                      password,
+                      role: "restaurantOwner",
+                    };
+                    console.log(userInfo, "from user info");
+                    fetch("http://localhost:5000/users", {
+                      method: "POST",
+                      headers: {
+                        "content-type": "application/json",
+                        authorization: `bearer ${localStorage.getItem(
+                          "accessToken"
+                        )}`,
+                      },
+                      body: JSON.stringify(userInfo),
+                    })
+                      .then((res) => res.json())
+                      .then((result) => {
+                        console.log("user saved ot db", result);
+                        if (result.status) {
+                          e.target.reset();
+                          setIsAdded(true);
+                          navigate("/");
+                          toast.success(
+                            "You have resisted successfully please wait for admin conformation",
+                            {
+                              position: "top-center",
+                              autoClose: 10000,
+                            }
+                          );
+                        }
+                      });
+                  } else {
+                    setIsAdded(true);
+                    e.target.reset();
                   }
-                );
-                e.target.reset();
-                setIsAdded(true);
+                });
               } else {
                 setIsAdded(true);
                 e.target.reset();
