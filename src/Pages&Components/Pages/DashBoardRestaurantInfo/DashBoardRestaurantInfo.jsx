@@ -2,10 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import useUserData from "../../../Hooks/UseUserData/UseUserData";
 import Table from "../../Components/Table/Table";
 
 const DashBoardRestaurantInfo = () => {
   const [loading, setLoading] = useState(false);
+  const [currentUserInfo] = useUserData();
+  console.log(currentUserInfo, "this is user info");
   const { data: restaurants = [], refetch } = useQuery({
     queryKey: ["restaurants"],
     queryFn: () =>

@@ -3,12 +3,19 @@ import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaPlusCircle } from "react-icons/fa";
+
 import { toast } from "react-toastify";
+
+import useUserData from "../../../Hooks/UseUserData/UseUserData";
 
 const AddProducts = () => {
   const [isAdded, setIsAdded] = useState(true);
   const { register, handleSubmit } = useForm();
+  // const navigate = useNavigate();
+  const [userInfo] = useUserData();
+  // const [restaurantInfo] = useRestaurantInfo(userInfo?.email);
 
+  //loading category
   const { data: categories = [] } = useQuery({
     queryKey: ["categories"],
     queryFn: () =>
@@ -19,6 +26,10 @@ const AddProducts = () => {
       }).then((res) => res.json()),
   });
 
+  // if (userInfo?.role !== "restaurantOwner") {
+  //   navigate("/error");
+  //   return;
+  // }
   const handleAddProduct = (data, e) => {
     setIsAdded(false);
     const { productName, price, category, itemType, discount, description } =
@@ -44,6 +55,7 @@ const AddProducts = () => {
           discount,
           description,
           imgUrl,
+          email: userInfo?.email,
         };
         if (imgUrl) {
           fetch(`http://localhost:5000/allProduct`, {

@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import AllRestaurantCard from "./AllRestaurantCard/AllRestaurantCard";
+
 const AllRestaurant = () => {
   const { data: restaurants = [] } = useQuery({
     queryKey: ["restaurants"],
@@ -11,6 +12,7 @@ const AllRestaurant = () => {
         },
       }).then((res) => res.json()),
   });
+
   return (
     <div className="md:pl-12 md:pt-8 p-2 max-w-full">
       <div className="flex justify-between items-center px-0 ">

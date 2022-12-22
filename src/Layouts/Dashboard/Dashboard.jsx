@@ -2,8 +2,10 @@ import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import Navbar from "../../Pages&Components/Components/Navbar/Navbar";
 import { FaAngleDown } from "react-icons/fa";
+import useUserData from "../../Hooks/UseUserData/UseUserData";
 
 const Dashboard = () => {
+  const [userInfo] = useUserData();
   return (
     <div>
       <Navbar />
@@ -21,7 +23,7 @@ const Dashboard = () => {
         </div>
         <div className="drawer-side w-72">
           <label htmlFor="dashboardDrawer" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-full bg-base-100 text-base-content ">
+          <ul className="menu p-4 w-full  text-base-content ">
             <div className="collapse">
               <input type="checkbox" />
               <>
@@ -66,7 +68,7 @@ const Dashboard = () => {
               <div className="collapse-content">
                 <ul className="menu bg-base-100 text-base-content ">
                   <li className=" text-sm  font-medium">
-                    <Link to="/dashboard/addProduct">All Products</Link>
+                    <Link to="/dashboard/allProduct">All Products</Link>
                   </li>
                   <li className=" text-sm  font-medium">
                     <Link to="/dashboard/addProduct">Add Product</Link>
@@ -80,32 +82,41 @@ const Dashboard = () => {
                 </ul>
               </div>
             </div>
-            <div className="collapse">
-              <input type="checkbox" />
-              <>
-                <li className="collapse-title p-0 text-sm  font-medium">
-                  <h3 className="text-sm font-bold">
-                    Delivery Man Management
-                    <span>
-                      <FaAngleDown />
-                    </span>
-                  </h3>
-                </li>
-              </>
-              <div className="collapse-content">
-                <ul className="menu bg-base-100 text-base-content ">
-                  <li className=" text-sm  font-medium">
-                    <Link to="/dashboard/allDeliveryMan">All Delivery Man</Link>
+            {userInfo?.role === "admin" && (
+              <div className="collapse">
+                <input type="checkbox" />
+                <>
+                  <li className="collapse-title p-0 text-sm  font-medium">
+                    <h3 className="text-sm font-bold">
+                      Delivery Man Management
+                      <span>
+                        <FaAngleDown />
+                      </span>
+                    </h3>
                   </li>
-                  <li className="text-sm  font-medium">
-                    <Link to="/dashboard/addDeliveryMan">Add Delivery Man</Link>
-                  </li>
-                  <li className=" text-sm  font-medium">
-                    <Link to="/dashboard/addProduct">Reviews</Link>
-                  </li>
-                </ul>
+                </>
+                <div className="collapse-content">
+                  <ul className="menu bg-base-100 text-base-content ">
+                    <li className=" text-sm  font-medium">
+                      {userInfo.role === "admin" && (
+                        <Link to="/dashboard/allDeliveryMan">
+                          All Delivery Man
+                        </Link>
+                      )}
+                    </li>
+                    <li className="text-sm  font-medium">
+                      <Link to="/dashboard/addDeliveryMan">
+                        Add Delivery Man
+                      </Link>
+                    </li>
+                    <li className=" text-sm  font-medium">
+                      <Link to="/dashboard/addProduct">Reviews</Link>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
+            )}
+
             <div className="collapse">
               <input type="checkbox" />
               <>
@@ -120,15 +131,25 @@ const Dashboard = () => {
               </>
               <div className="collapse-content">
                 <ul className="menu bg-base-100 text-base-content ">
-                  <li className=" text-sm  font-medium">
-                    <Link to="/dashboard/addRestaurant">Add Restaurant</Link>
-                  </li>
-                  <li className="text-sm  font-medium">
-                    <Link to="/dashboard/allRestaurant">All Restaurant</Link>
-                  </li>
-                  <li className=" text-sm  font-medium">
-                    <Link to="/dashboard/addProduct">My Restaurant</Link>
-                  </li>
+                  {userInfo?.role === "admin" && (
+                    <>
+                      <li className=" text-sm  font-medium">
+                        <Link to="/dashboard/addRestaurant">
+                          Add Restaurant
+                        </Link>
+                      </li>
+                      <li className="text-sm  font-medium">
+                        <Link to="/dashboard/allRestaurant">
+                          All Restaurant
+                        </Link>
+                      </li>
+                    </>
+                  )}
+                  {userInfo?.role === "restaurantOwner" && (
+                    <li className=" text-sm  font-medium">
+                      <Link to="/dashboard/addProduct">My Restaurant</Link>
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>

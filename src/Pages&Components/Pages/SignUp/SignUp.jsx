@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import loginImg from "../../../Assets/login.jpg";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
@@ -14,14 +14,15 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
   const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSignUp = (data, e) => {
     setIsAdded(false);
-    const { email, password } = data;
+    const { email, password, username } = data;
     createUser(email, password)
       .then((result) => {
         if (result?.user?.uid) {
-          const userInfo = { email, password, role: "user" };
+          const userInfo = { email, username, role: "user" };
           fetch("http://localhost:5000/users", {
             method: "POST",
             headers: {
@@ -34,6 +35,7 @@ const SignUp = () => {
             .then((result) => {
               if (result.status) {
                 e.target.reset();
+                navigate("/");
                 toast.success("Sign up  successful", {
                   position: "top-center",
                 });

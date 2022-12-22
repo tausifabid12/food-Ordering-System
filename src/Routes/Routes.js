@@ -1,8 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layouts/Main/Main";
 import AllCategory from "../Pages&Components/Pages/AllCategory/AllCategory";
-
-// import AllRestaurant from "../Pages&Components/Pages/AllRestaurant/AllRestaurant";
 import Home from "../Pages&Components/Pages/Home/Home/Home";
 import Login from "../Pages&Components/Pages/Login/Login";
 import SignUp from "../Pages&Components/Pages/SignUp/SignUp";
@@ -16,6 +14,10 @@ import RegisterDeliveryMan from "../Pages&Components/Pages/RegisterDeliveryMan/R
 import DashBoardRestaurantInfo from "../Pages&Components/Pages/DashBoardRestaurantInfo/DashBoardRestaurantInfo";
 import DashBoardDeliveryMan from "../Pages&Components/Pages/DashBoardDeliveryMan/DashBoardDeliveryMan";
 import ErrorPage from "../Pages&Components/Pages/ErrorPage/ErrorPage";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import AdminRoute from "./AdminRoute/AdminRoute";
+import RestaurantOwnerRoute from "./RestaurantOwnerRoute/RestaurantOwnerRoute";
+import DashBoardAllProducts from "../Pages&Components/Pages/DashBoardAllProducts/DashBoardAllProducts";
 
 const router = createBrowserRouter([
   {
@@ -43,7 +45,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <Cart />,
+        element: (
+          <PrivateRoute>
+            <Cart />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
@@ -69,11 +75,27 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/dashboard/addProduct",
-        element: <AddProducts />,
+        element: (
+          <RestaurantOwnerRoute>
+            <AddProducts />
+          </RestaurantOwnerRoute>
+        ),
+      },
+      {
+        path: "/dashboard/allProduct",
+        element: (
+          <RestaurantOwnerRoute>
+            <DashBoardAllProducts />
+          </RestaurantOwnerRoute>
+        ),
       },
       {
         path: "/dashboard/addRestaurant",
@@ -81,15 +103,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/allRestaurant",
-        element: <DashBoardRestaurantInfo />,
+        element: (
+          <AdminRoute>
+            <DashBoardRestaurantInfo />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/addDeliveryMan",
-        element: <RegisterDeliveryMan />,
+        element: (
+          <AdminRoute>
+            <RegisterDeliveryMan />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/allDeliveryMan",
-        element: <DashBoardDeliveryMan />,
+        element: (
+          <AdminRoute>
+            <DashBoardDeliveryMan />
+          </AdminRoute>
+        ),
       },
     ],
   },

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import loginImg from "../../../Assets/login.jpg";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
@@ -9,6 +9,10 @@ import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 const Login = () => {
   const [error, setError] = useState("");
   const [isAdded, setIsAdded] = useState(true);
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+
   const {
     register,
     handleSubmit,
@@ -23,11 +27,12 @@ const Login = () => {
       .then((result) => {
         if (result?.user?.uid) {
           e.target.reset();
+          setIsAdded(true);
+          navigate(from, { replace: true });
           toast.success("login successful", {
             position: "top-center",
           });
           setError("");
-          setIsAdded(true);
         }
       })
       .catch((error) => {

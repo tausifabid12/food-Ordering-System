@@ -47,7 +47,7 @@ const RestaurantRegister = () => {
           const restaurantInfo = {
             userName,
             email,
-            restaurantName,
+            restaurantName: restaurantName.toLowerCase(),
             location,
             deliveryTime,
             minOrder,
@@ -73,7 +73,6 @@ const RestaurantRegister = () => {
                       password,
                       role: "restaurantOwner",
                     };
-                    console.log(userInfo, "from user info");
                     fetch("http://localhost:5000/users", {
                       method: "POST",
                       headers: {
