@@ -15,14 +15,49 @@ const RestaurantCard = ({ info }) => {
   } = info;
   return (
     <Link to={`/restaurant/${_id}`}>
-      <div className="card min-w-[200px] md:w-full h-60 card-compact bg-base-100 rounded-md shadow-md">
+      <div className="card min-w-[230px] md:w-full h-60 card-compact bg-base-100 rounded-md shadow-md">
         <figure>
-          <img src={coverImg} alt="Restaurant" />
+          <img
+            src={coverImg}
+            className="transition duration-200 ease-linear hover:scale-125"
+            alt="Restaurant"
+          />
         </figure>
         <div className="card-body">
-          <h2 className="text-md font-bold">{restaurantName}</h2>
+          <h2 className="text-md font-bold uppercase text-gray-900">
+            {restaurantName}
+          </h2>
           <p className="text-sm text-gray-600">{location}</p>
-          <p className="text-sm text-gray-800">Rating {4.5}</p>
+          {/* <p className="text-sm text-gray-800">Rating {4.5}</p> */}
+          <div className="rating rating-sm">
+            {/* <p>Rating:</p> */}
+            <input
+              type="radio"
+              name="rating-4"
+              className="mask mask-star-2 bg-primary"
+            />
+            <input
+              type="radio"
+              name="rating-4"
+              className="mask mask-star-2 bg-primary"
+              defaultChecked
+            />
+            <input
+              type="radio"
+              name="rating-4"
+              className="mask mask-star-2 bg-primary"
+            />
+            <input
+              type="radio"
+              name="rating-4"
+              className="mask mask-star-2 bg-primary"
+            />
+            <input
+              type="radio"
+              name="rating-4"
+              className="mask mask-star-2 bg-primary"
+            />
+          </div>
         </div>
       </div>
     </Link>

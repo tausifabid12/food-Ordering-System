@@ -38,18 +38,27 @@ const Dashboard = () => {
               </>
               <div className="collapse-content">
                 <ul className="menu bg-base-100 text-base-content ">
-                  <li className=" text-sm  font-medium">
-                    <Link to="/dashboard/addProduct">All Orders</Link>
-                  </li>
-                  <li className="text-sm  font-medium">
-                    <Link to="/dashboard/addProduct">Accepted</Link>
-                  </li>
-                  <li className=" text-sm  font-medium">
-                    <Link to="/dashboard/addProduct">Ready For delivery</Link>
-                  </li>
-                  <li className=" text-sm  font-medium">
-                    <Link to="/dashboard/addProduct">Delivered</Link>
-                  </li>
+                  {/* <li className=" text-sm  font-medium rounded-md">
+                    <Link to="/dashboard/addProduct">My Orders</Link>
+                  </li> */}
+                  {userInfo?.role === "restaurantOwner" && (
+                    <>
+                      <li className=" text-sm  font-medium">
+                        <Link to="/dashboard/addProduct">All Orders</Link>
+                      </li>
+                      <li className="text-sm  font-medium">
+                        <Link to="/dashboard/addProduct">Cooking</Link>
+                      </li>
+                      <li className=" text-sm  font-medium">
+                        <Link to="/dashboard/addProduct">
+                          Ready For delivery
+                        </Link>
+                      </li>
+                      <li className=" text-sm  font-medium">
+                        <Link to="/dashboard/addProduct">Delivered</Link>
+                      </li>
+                    </>
+                  )}
                 </ul>
               </div>
             </div>
@@ -73,12 +82,12 @@ const Dashboard = () => {
                   <li className=" text-sm  font-medium">
                     <Link to="/dashboard/addProduct">Add Product</Link>
                   </li>
-                  <li className="text-sm  font-medium">
+                  {/* <li className="text-sm  font-medium">
                     <Link to="/dashboard/addProduct">Add Category</Link>
                   </li>
                   <li className=" text-sm  font-medium">
                     <Link to="/dashboard/addProduct">Addons</Link>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
@@ -120,14 +129,17 @@ const Dashboard = () => {
             <div className="collapse">
               <input type="checkbox" />
               <>
-                <li className="collapse-title p-0 text-sm  font-medium">
-                  <h3 className="text-sm  font-bold">
-                    Business Management
-                    <span>
-                      <FaAngleDown />
-                    </span>
-                  </h3>
-                </li>
+                {userInfo?.role === "admin" ||
+                  (userInfo?.role === "restaurantOwner" && (
+                    <li className="collapse-title p-0 text-sm  font-medium">
+                      <h3 className="text-sm  font-bold">
+                        Business Management
+                        <span>
+                          <FaAngleDown />
+                        </span>
+                      </h3>
+                    </li>
+                  ))}
               </>
               <div className="collapse-content">
                 <ul className="menu bg-base-100 text-base-content ">

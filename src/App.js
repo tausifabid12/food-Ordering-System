@@ -13,7 +13,7 @@ function App() {
   //   borderColor: "red",
   // };
   return (
-    <div className="max-w-[1440px] mx-auto lg:px-24 bg-white">
+    <div className="max-w-[1500px] mx-auto  bg-white">
       <ProductProvider>
         <RouterProvider router={router}></RouterProvider>
         <ToastContainer />

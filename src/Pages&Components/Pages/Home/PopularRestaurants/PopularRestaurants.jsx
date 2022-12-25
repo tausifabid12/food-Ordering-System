@@ -19,9 +19,11 @@ const PopularRestaurants = () => {
   return (
     <div className="md:pl-12 md:pt-8 p-2 max-w-full">
       <div className="flex justify-between items-center px-0 ">
-        <h2 className="text-2xl md:text-3xl font-bold">PopularRestaurants</h2>
+        <h2 className="text-2xl md:text-3xl font-bold ">PopularRestaurants</h2>
         <Link to="restaurants">
-          <button>view all</button>
+          <button className="btn btn-primary btn-xs text-white font-bold">
+            view all
+          </button>
         </Link>
       </div>
       <div className="flex overflow-x-auto py-12 gap-2 md:grid  md:grid-cols-2 lg:grid-cols-3 md:gap-7">

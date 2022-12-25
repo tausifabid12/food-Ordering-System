@@ -8,18 +8,18 @@ import TopRatedProducts from "../TopRatedProducts/TopRatedProducts";
 
 const Home = () => {
   return (
-    <div>
+    <div className="-z-40">
       <Hero />
       <div className="lg:flex block  ">
-        <div className="w-full  lg:w-80">
+        <div className="w-full  lg:w-80 lg:pl-7">
           <Categories />
         </div>
-        <div className="w-full">
+        <div className="w-full lg:pr-7">
           <PopularRestaurants />
           <Campaigns />
           <TopRatedProducts />
-          <PopularRestaurants />
-          <TopRatedProducts />
+          {/* <PopularRestaurants />
+          <TopRatedProducts /> */}
           <AllRestaurant />
         </div>
       </div>

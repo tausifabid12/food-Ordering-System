@@ -7,6 +7,14 @@ const ProductsContext = createContext();
 const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(productReducer, initialState);
 
+  //cart
+
+  // useEffect(() => {
+  //   if(state.cart){
+
+  //   }
+  // }, [state?.cart]);
+
   useEffect(() => {
     dispatch({ type: actionTypes.FETCHING_START });
     fetch("http://localhost:5000/allProduct")

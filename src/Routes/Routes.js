@@ -18,6 +18,9 @@ import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import RestaurantOwnerRoute from "./RestaurantOwnerRoute/RestaurantOwnerRoute";
 import DashBoardAllProducts from "../Pages&Components/Pages/DashBoardAllProducts/DashBoardAllProducts";
+import OrderDeliveryTime from "../Pages&Components/Pages/OrderDeliveryTime/OrderDeliveryTime";
+import AllProduct from "../Pages&Components/Pages/AllProduct/AllProduct";
+import CategoryProducts from "../Pages&Components/Pages/CategoryProducts/CategoryProducts";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +41,16 @@ const router = createBrowserRouter([
         element: <Restaurants />,
       },
       {
+        path: "/products",
+        element: <AllProduct />,
+      },
+      {
+        path: "/allProduct/:catName",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/catProducts/${params.catName}`),
+        element: <CategoryProducts />,
+      },
+      {
         path: "/restaurant/:id",
         loader: ({ params }) =>
           fetch(`http://localhost:5000/allRestaurants/${params.id}`),
@@ -48,6 +61,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Cart />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/deliveryTime",
+        element: (
+          <PrivateRoute>
+            <OrderDeliveryTime />
           </PrivateRoute>
         ),
       },

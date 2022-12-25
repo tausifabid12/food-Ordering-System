@@ -1,60 +1,63 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { useContext } from "react";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import useRestaurantInfo from "../../../Hooks/UseRestaurantInfo/UseRestaurantInfo";
-import useUserData from "../../../Hooks/UseUserData/UseUserData";
+import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
+import Loading from "../Loading/Loading";
 import ProductsTable from "./ProductsTable";
 
 const DashBoardAllProducts = () => {
   const [loading, setLoading] = useState(false);
-  const [userInfo] = useUserData();
-  const [restaurantInfo] = useRestaurantInfo(userInfo?.email);
-  console.log(restaurantInfo, "thos ffj");
-  const { data: allProducts = [] } = useQuery({
+  const { user } = useContext(AuthContext);
+
+  const { data: allProducts = [], refetch } = useQuery({
     queryKey: ["allProducts"],
     queryFn: () =>
-      fetch(
-        `http://localhost:5000/myProducts?restaurantName=${restaurantInfo?.restaurantName}`,
-        {
-          headers: {
-            authorization: `bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
-      ).then((res) => res.json()),
+      fetch(`http://localhost:5000/myProducts?email=${user?.email}`, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }).then((res) => res.json()),
   });
 
+  console.log(allProducts);
   const handleDelete = (id) => {
-    // fetch(`http://localhost:5000/allDeliveryMan/${id}`, {
-    //   method: "DELETE",
-    //   headers: {
-    //     authorization: `bearer ${localStorage.getItem("accessToken")}`,
-    //   },
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     if (data.status) {
-    //       setLoading(false);
-    //       refetch();
-    //       toast.error("deliveryman Removed", {
-    //         position: "top-center",
-    //       });
-    //     } else {
-    //       setLoading(false);
-    //     }
-    //   });
+    setLoading(true);
+    fetch(`http://localhost:5000/products/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.status) {
+          setLoading(false);
+          refetch();
+          toast.error("Product Removed", {
+            position: "top-center",
+          });
+        } else {
+          setLoading(false);
+        }
+      });
   };
 
   const header = ["Name", "Price", "Category", "Action"];
   return (
     <div>
-      <ProductsTable
-        header={header}
-        body={allProducts?.data}
-        handleDelete={handleDelete}
-        loading={loading}
-      />
+      {allProducts?.data && allProducts?.data.length ? (
+        <ProductsTable
+          header={header}
+          body={allProducts?.data}
+          handleDelete={handleDelete}
+          loading={loading}
+        />
+      ) : (
+        <Loading />
+      )}
     </div>
   );
 };

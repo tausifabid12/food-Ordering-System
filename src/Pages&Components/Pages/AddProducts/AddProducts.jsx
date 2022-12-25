@@ -87,7 +87,7 @@ const AddProducts = () => {
   return (
     <div className="px-24 w-full">
       <h3 className="text-gray-900 font-bold text-3xl flex items-center">
-        <span className="text-gray-900 pr-3">
+        <span className="text-primary pr-3">
           <FaPlusCircle />
         </span>
         Add Product
@@ -213,7 +213,7 @@ const AddProducts = () => {
             <input
               type="submit"
               value="Add Product For Sale"
-              className="btn w-full p-3 text-center rounded-sm bg-gray-900  text-white"
+              className="btn btn-primary w-full   text-gray-900 font-bold"
             />
           ) : (
             <button className="btn loading w-full">loading</button>

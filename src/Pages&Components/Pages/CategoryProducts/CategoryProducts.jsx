@@ -1,0 +1,44 @@
+import React from "react";
+import { useLoaderData } from "react-router-dom";
+import ProductCard from "../../Components/ProductCard/ProductCard";
+import ComingSoon from "../../Components/ComingSoon/ComingSoon";
+
+const CategoryProducts = () => {
+  const products = useLoaderData();
+  console.log(products);
+  return (
+    <div className="px-12 py-8">
+      <h1 className="text-2xl md:text-3xl font-bold">
+        {products.message} Dishes
+      </h1>
+      <div className="w-full py-12 gap-2 md:grid  md:grid-cols-1 lg:grid-cols-2 md:gap-7">
+        {products?.data && products?.data.length ? (
+          products?.data.map((product) => (
+            <ProductCard key={product?._id} info={product} />
+          ))
+        ) : (
+          <div className="col-span-2">
+            <ComingSoon />
+          </div>
+        )}
+
+        {/* {products.data &&
+          products?.data.map((restaurant) => (
+            <ProductCard key={restaurant?._id} info={restaurant} />
+          ))} */}
+      </div>
+    </div>
+  );
+};
+
+export default CategoryProducts;
+
+// {products?.data && products?.data.length ? (
+//   products?.data.map((product) => (
+//     <ProductCard key={product?._id} info={product} />
+//   ))
+// ) : (
+//   <div className="col-span-2">
+//     <ComingSoon />
+//   </div>
+// )}

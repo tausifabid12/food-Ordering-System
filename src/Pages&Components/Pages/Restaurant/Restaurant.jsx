@@ -1,14 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import ComingSoon from "../../Components/ComingSoon/ComingSoon";
 import ProductCard from "../../Components/ProductCard/ProductCard";
 
 const Restaurant = () => {
   const info = useLoaderData();
-  console.log("thsi si info", info);
+  console.log(info);
   const {
-    approved,
-    userName,
+    // approved,
+    // userName,
     restaurantName,
     minOrder,
     location,
@@ -30,7 +31,7 @@ const Restaurant = () => {
   return (
     <div>
       {/* page header or top section */}
-      <div className="grid grid-cols-1 gap-y-2 lg:px-6 lg:grid-cols-2 h-[300px] rounded-md place-content-center text-white bg-primary  ">
+      <div className="grid grid-cols-1 gap-y-2 lg:px-6 lg:grid-cols-2 h-[300px] rounded-md place-content-center text-white bg-[#171a29]  ">
         <div className="w-full max-h-full">
           <img
             className="w-full max-h-[250px] rounded-md"
@@ -63,11 +64,16 @@ const Restaurant = () => {
         </div>
       </div>
       {/* this is product section  */}
-      <div className="grid grid-cols-1 md:grid-cols-3 py-10 gap-4">
-        {allProducts?.data &&
+      <div className="grid grid-cols-1 md:grid-cols-2 py-10 lg:px-7 gap-4">
+        {allProducts?.data && allProducts?.data.length ? (
           allProducts?.data.map((product) => (
             <ProductCard key={product?._id} info={product} />
-          ))}
+          ))
+        ) : (
+          <div className="col-span-2">
+            <ComingSoon />
+          </div>
+        )}
       </div>
     </div>
   );
