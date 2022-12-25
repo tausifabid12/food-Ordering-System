@@ -17,7 +17,7 @@ const ProductProvider = ({ children }) => {
 
   useEffect(() => {
     dispatch({ type: actionTypes.FETCHING_START });
-    fetch("http://localhost:5000/allProduct")
+    fetch("https://express-food-server.vercel.app/allProduct")
       .then((res) => res.json())
       .then((data) =>
         dispatch({ type: actionTypes.FETCHING_SUCCESS, payload: data.data })

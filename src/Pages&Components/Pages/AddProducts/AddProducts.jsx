@@ -19,7 +19,7 @@ const AddProducts = () => {
   const { data: categories = [] } = useQuery({
     queryKey: ["categories"],
     queryFn: () =>
-      fetch(`http://localhost:5000/allCategory`, {
+      fetch(`https://express-food-server.vercel.app/allCategory`, {
         headers: {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },
@@ -58,7 +58,7 @@ const AddProducts = () => {
           email: userInfo?.email,
         };
         if (imgUrl) {
-          fetch(`http://localhost:5000/allProduct`, {
+          fetch(`https://express-food-server.vercel.app/allProduct`, {
             method: "POST",
             headers: {
               "content-type": "application/json",

@@ -7,7 +7,7 @@ const PopularRestaurants = () => {
   const { data: restaurants = [] } = useQuery({
     queryKey: ["restaurants"],
     queryFn: () =>
-      fetch(`http://localhost:5000/allRestaurants`, {
+      fetch(`https://express-food-server.vercel.app/allRestaurants`, {
         // headers: {
         //   authorization: `bearer ${localStorage.getItem("accessToken")}`,
         // },

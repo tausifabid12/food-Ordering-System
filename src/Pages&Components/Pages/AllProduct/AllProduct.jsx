@@ -6,7 +6,7 @@ const AllProduct = () => {
   const { data: products = [] } = useQuery({
     queryKey: ["products"],
     queryFn: () =>
-      fetch(`http://localhost:5000/allProduct`, {
+      fetch(`https://express-food-server.vercel.app/allProduct`, {
         headers: {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },

@@ -54,7 +54,7 @@ const RestaurantRegister = () => {
             coverImg: imgUrl,
             approved: false,
           };
-          fetch(`http://localhost:5000/addRestaurant`, {
+          fetch(`https://express-food-server.vercel.app/addRestaurant`, {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -73,7 +73,7 @@ const RestaurantRegister = () => {
                       password,
                       role: "restaurantOwner",
                     };
-                    fetch("http://localhost:5000/users", {
+                    fetch("https://express-food-server.vercel.app/users", {
                       method: "POST",
                       headers: {
                         "content-type": "application/json",

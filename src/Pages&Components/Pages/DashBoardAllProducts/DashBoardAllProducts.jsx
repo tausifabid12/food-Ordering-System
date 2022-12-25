@@ -14,17 +14,20 @@ const DashBoardAllProducts = () => {
   const { data: allProducts = [], refetch } = useQuery({
     queryKey: ["allProducts"],
     queryFn: () =>
-      fetch(`http://localhost:5000/myProducts?email=${user?.email}`, {
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }).then((res) => res.json()),
+      fetch(
+        `https://express-food-server.vercel.app/myProducts?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      ).then((res) => res.json()),
   });
 
   console.log(allProducts);
   const handleDelete = (id) => {
     setLoading(true);
-    fetch(`http://localhost:5000/products/${id}`, {
+    fetch(`https://express-food-server.vercel.app/products/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

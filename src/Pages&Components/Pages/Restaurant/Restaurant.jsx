@@ -21,11 +21,14 @@ const Restaurant = () => {
   const { data: allProducts = [] } = useQuery({
     queryKey: ["allProducts", email],
     queryFn: () =>
-      fetch(`http://localhost:5000/myProducts?email=${email}`, {
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }).then((res) => res.json()),
+      fetch(
+        `https://express-food-server.vercel.app/myProducts?email=${email}`,
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      ).then((res) => res.json()),
   });
 
   return (

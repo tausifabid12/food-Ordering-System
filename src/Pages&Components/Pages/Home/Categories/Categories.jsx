@@ -6,10 +6,10 @@ const Categories = () => {
   const { data: categories = [] } = useQuery({
     queryKey: ["categories"],
     queryFn: () =>
-      fetch(`http://localhost:5000/allCategory`, {
-        // headers: {
-        //   authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        // },
+      fetch(`https://express-food-server.vercel.app/allCategory`, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
       }).then((res) => res.json()),
   });
 

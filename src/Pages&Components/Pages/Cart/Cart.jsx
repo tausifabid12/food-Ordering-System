@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import { useProducts } from "../../../Contexts/ProductProvider/ProductProvider";
 import useCart from "../../../Hooks/useCart/useCart";
+import useRestaurantInfo from "../../../Hooks/UseRestaurantInfo/UseRestaurantInfo";
 import CartProductInfo from "./CartProductInfo/CartProductInfo";
 
 const Cart = () => {
@@ -14,15 +15,19 @@ const Cart = () => {
     state: { products },
   } = useProducts();
   const { user } = useContext(AuthContext);
+  const [restaurantInfo] = useRestaurantInfo();
+  console.log(restaurantInfo, "this is restaurant info");
 
-  if (cartProducts?.data.length) {
-  }
+  // if (cartProducts?.data.length) {
+  // }
   const cartItemsInfo = products.filter((p) =>
     cartProducts?.data.find((pId) => pId.productId === p._id)
   );
 
+  console.log(cartItemsInfo);
+
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/cart/${id}`, {
+    fetch(`https://express-food-server.vercel.app/cart/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -39,25 +44,42 @@ const Cart = () => {
 
   const handleConfirmOrder = () => {
     //  cartProducts?.data.length &&
-    const cartProductIds = cartProducts?.data.map((p) => p.productId);
+    const confirmProductsInfo = cartItemsInfo.map((p) => {
+      console.log(p);
+      return {
+        productId: p?._id,
+        img: p?.imgUrl,
+        price: p?.price,
+        restaurantEmail: p?.email,
+        ProductName: p?.productName,
+        UserEmail: user?.email,
+      };
+    });
 
-    fetch(`http://localhost:5000/addOrder`, {
+    console.log(confirmProductsInfo, "this is confirm");
+
+    fetch(`https://express-food-server.vercel.app/addOrder`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
-      body: JSON.stringify({ orderInfo: cartProductIds }),
+      body: JSON.stringify({
+        orderProductsInfo: confirmProductsInfo,
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.status) {
-          fetch(`http://localhost:5000/clearCart/${user?.email}`, {
-            method: "DELETE",
-            headers: {
-              authorization: `bearer ${localStorage.getItem("accessToken")}`,
-            },
-          })
+          fetch(
+            `https://express-food-server.vercel.app/clearCart/${user?.email}`,
+            {
+              method: "DELETE",
+              headers: {
+                authorization: `bearer ${localStorage.getItem("accessToken")}`,
+              },
+            }
+          )
             .then((res) => res.json())
             .then((data) => {
               if (data?.status) {

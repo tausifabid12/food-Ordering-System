@@ -12,7 +12,7 @@ const DashBoardRestaurantInfo = () => {
   const { data: restaurants = [], refetch } = useQuery({
     queryKey: ["restaurants"],
     queryFn: () =>
-      fetch(`http://localhost:5000/allRestaurants`, {
+      fetch(`https://express-food-server.vercel.app/allRestaurants`, {
         headers: {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },
@@ -21,7 +21,7 @@ const DashBoardRestaurantInfo = () => {
 
   const handleRestaurantApprove = (id) => {
     setLoading(true);
-    fetch(`http://localhost:5000/allRestaurants/${id}`, {
+    fetch(`https://express-food-server.vercel.app/allRestaurants/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -45,7 +45,7 @@ const DashBoardRestaurantInfo = () => {
   };
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/allRestaurants/${id}`, {
+    fetch(`https://express-food-server.vercel.app/allRestaurants/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

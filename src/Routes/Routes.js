@@ -21,6 +21,7 @@ import DashBoardAllProducts from "../Pages&Components/Pages/DashBoardAllProducts
 import OrderDeliveryTime from "../Pages&Components/Pages/OrderDeliveryTime/OrderDeliveryTime";
 import AllProduct from "../Pages&Components/Pages/AllProduct/AllProduct";
 import CategoryProducts from "../Pages&Components/Pages/CategoryProducts/CategoryProducts";
+import DashBoardAllOrders from "../Pages&Components/Pages/DashBoardAllOrders/DashBoardAllOrders";
 
 const router = createBrowserRouter([
   {
@@ -47,13 +48,17 @@ const router = createBrowserRouter([
       {
         path: "/allProduct/:catName",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/catProducts/${params.catName}`),
+          fetch(
+            `https://express-food-server.vercel.app/catProducts/${params.catName}`
+          ),
         element: <CategoryProducts />,
       },
       {
         path: "/restaurant/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/allRestaurants/${params.id}`),
+          fetch(
+            `https://express-food-server.vercel.app/allRestaurants/${params.id}`
+          ),
         element: <Restaurant />,
       },
       {
@@ -102,6 +107,14 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      {
+        path: "/dashboard/allOrders",
+        element: (
+          <RestaurantOwnerRoute>
+            <DashBoardAllOrders />
+          </RestaurantOwnerRoute>
+        ),
+      },
       {
         path: "/dashboard/addProduct",
         element: (

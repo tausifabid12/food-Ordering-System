@@ -23,7 +23,7 @@ const SignUp = () => {
       .then((result) => {
         if (result?.user?.uid) {
           const userInfo = { email, username, role: "user" };
-          fetch("http://localhost:5000/users", {
+          fetch("https://express-food-server.vercel.app/users", {
             method: "POST",
             headers: {
               "content-type": "application/json",

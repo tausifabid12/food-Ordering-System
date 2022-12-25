@@ -11,7 +11,7 @@ const BookingModal = ({ info }) => {
   const handleProductInfo = (data, e) => {
     const { productName, ProductPrice } = data;
     console.log(data);
-    // fetch("http://localhost:5000/cart", {
+    // fetch("https://express-food-server.vercel.app/cart", {
     //   method: "POST",
     //   headers: {
     //     "content-type": "application/json",

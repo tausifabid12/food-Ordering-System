@@ -31,7 +31,7 @@ const RegisterDeliveryMan = () => {
             deliveryManType,
             role: "deliveryMan",
           };
-          fetch(`http://localhost:5000/addDeliveryMan`, {
+          fetch(`https://express-food-server.vercel.app/addDeliveryMan`, {
             method: "POST",
             headers: {
               "content-type": "application/json",

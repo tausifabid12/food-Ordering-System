@@ -11,7 +11,7 @@ const useUserData = () => {
   const email = user?.email;
   useEffect(() => {
     setUserLoading(true);
-    fetch(`http://localhost:5000/users/${email}`)
+    fetch(`https://express-food-server.vercel.app/users/${email}`)
       .then((res) => res.json())
       .then((data) => {
         setCurrentUserInfo(data?.data);

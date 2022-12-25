@@ -8,7 +8,7 @@ const DashBoardDeliveryMan = () => {
   const { data: deliveryMan = [], refetch } = useQuery({
     queryKey: ["deliveryMan"],
     queryFn: () =>
-      fetch(`http://localhost:5000/allDeliveryMan`, {
+      fetch(`https://express-food-server.vercel.app/allDeliveryMan`, {
         headers: {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },
@@ -17,7 +17,7 @@ const DashBoardDeliveryMan = () => {
 
   const handleDeliverymanApprove = (id) => {
     setLoading(true);
-    fetch(`http://localhost:5000/allDeliveryMan/${id}`, {
+    fetch(`https://express-food-server.vercel.app/allDeliveryMan/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -41,7 +41,7 @@ const DashBoardDeliveryMan = () => {
   };
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/allDeliveryMan/${id}`, {
+    fetch(`https://express-food-server.vercel.app/allDeliveryMan/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

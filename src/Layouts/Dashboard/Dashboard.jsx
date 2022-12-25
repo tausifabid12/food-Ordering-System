@@ -44,7 +44,7 @@ const Dashboard = () => {
                   {userInfo?.role === "restaurantOwner" && (
                     <>
                       <li className=" text-sm  font-medium">
-                        <Link to="/dashboard/addProduct">All Orders</Link>
+                        <Link to="/dashboard/allOrders">All Orders</Link>
                       </li>
                       <li className="text-sm  font-medium">
                         <Link to="/dashboard/addProduct">Cooking</Link>
