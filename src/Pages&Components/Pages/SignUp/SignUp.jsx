@@ -57,12 +57,12 @@ const SignUp = () => {
       });
   };
   return (
-    <div className="bg-gray-200 h-screen  w-full grid grid-cols-2 ">
-      <div className="text-center lg:text-left">
+    <div className="bg-gray-200 h-screen  w-full grid grid-cols-1 lg:grid-cols-2 ">
+      <div className="text-center lg:text-left hidden lg:block">
         <img src={loginImg} className="w-full h-4/5" alt="" />
       </div>
-      <div className="p-16">
-        <div className="w-full bg-white  p-12 space-y-3 rounded-xl shadow-lg">
+      <div className=" lg:p-16">
+        <div className="w-full bg-white px-4 py-7 lg:p-12 space-y-3 rounded-xl shadow-lg">
           <h1 className="text-3xl font-bold text-center text-primary">
             Sign up
           </h1>

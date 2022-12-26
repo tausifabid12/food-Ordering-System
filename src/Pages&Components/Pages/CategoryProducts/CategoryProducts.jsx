@@ -7,11 +7,11 @@ const CategoryProducts = () => {
   const products = useLoaderData();
   console.log(products);
   return (
-    <div className="px-12 py-8">
+    <div className=" lg:px-12 py-8 px-2">
       <h1 className="text-2xl md:text-3xl font-bold">
         {products.message} Dishes
       </h1>
-      <div className="w-full py-12 gap-2 md:grid  md:grid-cols-1 lg:grid-cols-2 md:gap-7">
+      <div className="w-full py-12  grid gap-3 md:grid-cols-1 lg:grid-cols-2 md:gap-7">
         {products?.data && products?.data.length ? (
           products?.data.map((product) => (
             <ProductCard key={product?._id} info={product} />
@@ -21,11 +21,6 @@ const CategoryProducts = () => {
             <ComingSoon />
           </div>
         )}
-
-        {/* {products.data &&
-          products?.data.map((restaurant) => (
-            <ProductCard key={restaurant?._id} info={restaurant} />
-          ))} */}
       </div>
     </div>
   );

@@ -17,16 +17,16 @@ const PopularRestaurants = () => {
   console.log(restaurants);
 
   return (
-    <div className="md:pl-12 md:pt-8 p-2 max-w-full">
-      <div className="flex justify-between items-center px-0 ">
-        <h2 className="text-2xl md:text-3xl font-bold ">PopularRestaurants</h2>
+    <div className="pl-2 lg:pl-12 md:pt-8 p-2 max-w-full">
+      <div className="flex justify-between items-center  pl-3 ">
+        <h2 className="text-xl md:text-3xl font-bold ">PopularRestaurants</h2>
         <Link to="restaurants">
-          <button className="btn btn-primary btn-xs text-white font-bold">
+          <button className="btn btn-primary btn-xs text-xs text-white font-bold">
             view all
           </button>
         </Link>
       </div>
-      <div className="flex overflow-x-auto py-12 gap-2 md:grid  md:grid-cols-2 lg:grid-cols-3 md:gap-7">
+      <div className="flex overflow-x-auto py-6 lg:py-12 gap-2 md:grid  md:grid-cols-2 lg:grid-cols-3 md:gap-x-3  md:gap-y-5">
         {restaurants.data &&
           restaurants?.data.map((restaurant) => (
             <RestaurantCard key={restaurant?._id} info={restaurant} />

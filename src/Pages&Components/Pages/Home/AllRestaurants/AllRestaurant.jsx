@@ -14,11 +14,11 @@ const AllRestaurant = () => {
   });
 
   return (
-    <div className="md:pl-12 md:pt-8 p-2 max-w-full">
+    <div className="pl-1 lg:pl-12 md:pt-8 p-2 max-w-full">
       <div className="flex justify-between items-center px-0 ">
-        <h2 className="text-2xl md:text-3xl font-bold">All Restaurants</h2>
+        <h2 className="text-2xl md:text-3xl font-bold pl-3">All Restaurants</h2>
       </div>
-      <div className="w-full py-12 gap-2 md:grid  md:grid-cols-1 lg:grid-cols-2 md:gap-7">
+      <div className="w-full py-6 lg:py-12 gap-y-3 grid grid-cols-1 lg:grid-cols-2 md:gap-7">
         {restaurants.data &&
           restaurants?.data.map((restaurant) => (
             <AllRestaurantCard key={restaurant?._id} info={restaurant} />

@@ -57,8 +57,8 @@ const ProductCard = ({ info }) => {
   return (
     <>
       <label
-        htmlFor="bookingModal"
-        className="card card-side min-w-[350px] lg:min-w-[200px]  p-2 bg-base-100 rounded-md shadow-md mx-auto "
+        // htmlFor="bookingModal"
+        className="card card-side min-w-[300px] lg:min-w-[200px]  lg:p-2 bg-base-100 rounded-md shadow-md mx-auto "
       >
         <div className=" w-5/12 rounded-md">
           <img
@@ -68,7 +68,7 @@ const ProductCard = ({ info }) => {
           />
         </div>
         <div className="card-body py-1">
-          <h2 className="text-xl font-bold">{productName}</h2>
+          <h2 className="text-md lg:text-xl font-bold">{productName}</h2>
           <p className="text-sm text-gray-600">{category}</p>
           <div>
             <p className="text-sm font-bold p-0 m-0">${price}</p>

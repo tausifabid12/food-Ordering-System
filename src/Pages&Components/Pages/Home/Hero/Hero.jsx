@@ -7,7 +7,7 @@ const Hero = () => {
     <div className="">
       <div className="hidden lg:block  ">
         <div
-          className="hero min-h-screen "
+          className="hero min-h-screen relative"
           style={{
             backgroundImage: ` url(${hero1})`,
           }}
@@ -27,13 +27,18 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="block lg:hidden py-9 px-4">
-        <h2 className="text-3xl font-bold px-4">Find Your Favorite Food</h2>
-        <input
-          type="text"
-          placeholder="Type here"
-          className="input  rounded-lg text-primary bg-accent  mt-5 mx-4 w-full max-w-xs"
-        />
+      <div className="block w-full lg:hidden py-9 ">
+        <div className="mx-auto max-w-full  md:w-1/2">
+          <h2 className="text-3xl font-bold px-4">
+            <span>Find Your Favorite</span> <br />
+            <span className="text-primary mt-3">Food</span>
+          </h2>
+          <input
+            type="text"
+            placeholder="Search here"
+            className="input  rounded-lg text-primary bg-base-100 border border-gray-300 min-w-[280px]  mt-5 ml-4 max-w-full "
+          />
+        </div>
       </div>
     </div>
   );

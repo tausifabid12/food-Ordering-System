@@ -17,7 +17,7 @@ const AllProduct = () => {
       <div className="flex justify-between items-center px-0 ">
         <h2 className="text-2xl md:text-3xl font-bold">All Products</h2>
       </div>
-      <div className="w-full py-12 gap-2 md:grid  md:grid-cols-1 lg:grid-cols-2 md:gap-7">
+      <div className="w-full py-12 gap-3 grid grid-cols-1 lg:grid-cols-2 md:gap-7">
         {products.data &&
           products?.data.map((restaurant) => (
             <ProductCard key={restaurant?._id} info={restaurant} />

@@ -15,16 +15,18 @@ const TopRatedProducts = () => {
   });
 
   return (
-    <div className="md:pl-12 p-2 max-w-full">
+    <div className="pl-2 lg:pl-12 p-2 max-w-full">
       <div className="flex justify-between items-center px-0 ">
-        <h2 className="text-2xl md:text-3xl font-bold">Top Rated Products</h2>
+        <h2 className="text-xl md:text-3xl font-bold pl-2">
+          Top Rated Products
+        </h2>
         <Link to="/products">
           <button className="btn btn-primary btn-xs text-white font-bold">
             view all
           </button>
         </Link>
       </div>
-      <div className="flex w-full overflow-x-auto py-12 gap-3 md:grid  md:grid-cols-2 lg:grid-cols-3 md:gap-7">
+      <div className="flex overflow-x-auto space-x-2 lg:space-x-0 py-12  md:grid md:gap-2 md:grid-cols-2 lg:grid-cols-3 md:gap-x-3  md:gap-y-5">
         {products?.data &&
           products?.data.map((product) => (
             <ProductCard key={product?._id} info={product}></ProductCard>

@@ -2,24 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const RestaurantCard = ({ info }) => {
-  const {
-    _id,
-    approved,
-    userName,
-    restaurantName,
-    minOrder,
-    location,
-    email,
-    deliveryTime,
-    coverImg,
-  } = info;
+  const { _id, restaurantName, location, coverImg } = info;
   return (
-    <Link to={`/restaurant/${_id}`}>
+    <Link to={`/restaurant/${_id}`} className="px-1">
       <div className="card min-w-[230px] md:w-full h-60 card-compact bg-base-100 rounded-md shadow-md">
         <figure>
           <img
             src={coverImg}
-            className="transition duration-200 ease-linear hover:scale-125"
+            className="rounded-t-md transition  duration-200 ease-linear lg:hover:scale-125"
             alt="Restaurant"
           />
         </figure>
