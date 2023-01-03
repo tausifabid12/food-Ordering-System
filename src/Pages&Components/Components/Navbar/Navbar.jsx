@@ -1,13 +1,14 @@
-import React from "react";
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
-import useCart from "../../../Hooks/useCart/useCart";
-import useUserData from "../../../Hooks/UseUserData/UseUserData";
+import React from 'react';
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
+import useCart from '../../../Hooks/useCart/useCart';
+import useUserData from '../../../Hooks/UseUserData/UseUserData';
 
 const Navbar = () => {
   const [userInfo] = useUserData();
   const [cartProducts] = useCart();
+  console.log(userInfo, 'this is  user');
 
   const { user, logOut } = useContext(AuthContext);
   const navLinks = (
@@ -22,12 +23,13 @@ const Navbar = () => {
         <Link to="/">Favorites</Link>
       </li>
 
-      {userInfo?.role === "admin" ||
-        (userInfo?.role === "restaurantOwner" && (
-          <li className=" rounded-md  transition duration-150 ease-in hover:text-white hover:bg-primary ">
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-        ))}
+      {userInfo?.role === 'admin' || userInfo?.role === 'restaurantOwner' ? (
+        <li className=" rounded-md  transition duration-150 ease-in hover:text-white hover:bg-primary ">
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+      ) : (
+        ''
+      )}
 
       {user?.uid ? (
         <li className="hidden lg:block rounded-md  transition duration-150 ease-in hover:text-white hover:bg-primary ">

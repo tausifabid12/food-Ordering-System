@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const ProductsTable = ({
   header,
@@ -8,7 +8,7 @@ const ProductsTable = ({
   loading,
 }) => {
   return (
-    <div className="overflow-x-auto w-full">
+    <div className="overflow-x-auto w-full h-full">
       <table className="table w-full">
         <thead>
           <tr>{header && header.map((name, i) => <th key={i}>{name}</th>)}</tr>
@@ -43,7 +43,7 @@ const ProductsTable = ({
                       handleDelete(data?._id);
                     }}
                     className={`btn btn-xs ${
-                      loading ? "btn-loading" : "btn-error"
+                      loading ? 'btn-loading' : 'btn-error'
                     }  `}
                   >
                     delete

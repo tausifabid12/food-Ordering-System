@@ -1,52 +1,53 @@
-import { createBrowserRouter } from "react-router-dom";
-import Main from "../Layouts/Main/Main";
-import AllCategory from "../Pages&Components/Pages/AllCategory/AllCategory";
-import Home from "../Pages&Components/Pages/Home/Home/Home";
-import Login from "../Pages&Components/Pages/Login/Login";
-import SignUp from "../Pages&Components/Pages/SignUp/SignUp";
-import Restaurant from "../Pages&Components/Pages/Restaurant/Restaurant";
-import Cart from "../Pages&Components/Pages/Cart/Cart";
-import Restaurants from "../Pages&Components/Pages/Restaurants/Restaurants";
-import Dashboard from "../Layouts/Dashboard/Dashboard";
-import AddProducts from "../Pages&Components/Pages/AddProducts/AddProducts";
-import RestaurantRegister from "../Pages&Components/Pages/RestaurantRegister/RestaurantRegister";
-import RegisterDeliveryMan from "../Pages&Components/Pages/RegisterDeliveryMan/RegisterDeliveryMan";
-import DashBoardRestaurantInfo from "../Pages&Components/Pages/DashBoardRestaurantInfo/DashBoardRestaurantInfo";
-import DashBoardDeliveryMan from "../Pages&Components/Pages/DashBoardDeliveryMan/DashBoardDeliveryMan";
-import ErrorPage from "../Pages&Components/Pages/ErrorPage/ErrorPage";
-import PrivateRoute from "./PrivateRoute/PrivateRoute";
-import AdminRoute from "./AdminRoute/AdminRoute";
-import RestaurantOwnerRoute from "./RestaurantOwnerRoute/RestaurantOwnerRoute";
-import DashBoardAllProducts from "../Pages&Components/Pages/DashBoardAllProducts/DashBoardAllProducts";
-import OrderDeliveryTime from "../Pages&Components/Pages/OrderDeliveryTime/OrderDeliveryTime";
-import AllProduct from "../Pages&Components/Pages/AllProduct/AllProduct";
-import CategoryProducts from "../Pages&Components/Pages/CategoryProducts/CategoryProducts";
-import DashBoardAllOrders from "../Pages&Components/Pages/DashBoardAllOrders/DashBoardAllOrders";
+import { createBrowserRouter } from 'react-router-dom';
+import Main from '../Layouts/Main/Main';
+import AllCategory from '../Pages&Components/Pages/AllCategory/AllCategory';
+import Home from '../Pages&Components/Pages/Home/Home/Home';
+import Login from '../Pages&Components/Pages/Login/Login';
+import SignUp from '../Pages&Components/Pages/SignUp/SignUp';
+import Restaurant from '../Pages&Components/Pages/Restaurant/Restaurant';
+import Cart from '../Pages&Components/Pages/Cart/Cart';
+import Restaurants from '../Pages&Components/Pages/Restaurants/Restaurants';
+import Dashboard from '../Layouts/Dashboard/Dashboard';
+import AddProducts from '../Pages&Components/Pages/AddProducts/AddProducts';
+import RestaurantRegister from '../Pages&Components/Pages/RestaurantRegister/RestaurantRegister';
+import RegisterDeliveryMan from '../Pages&Components/Pages/RegisterDeliveryMan/RegisterDeliveryMan';
+import DashBoardRestaurantInfo from '../Pages&Components/Pages/DashBoardRestaurantInfo/DashBoardRestaurantInfo';
+import DashBoardDeliveryMan from '../Pages&Components/Pages/DashBoardDeliveryMan/DashBoardDeliveryMan';
+import ErrorPage from '../Pages&Components/Pages/ErrorPage/ErrorPage';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import AdminRoute from './AdminRoute/AdminRoute';
+import RestaurantOwnerRoute from './RestaurantOwnerRoute/RestaurantOwnerRoute';
+import DashBoardAllProducts from '../Pages&Components/Pages/DashBoardAllProducts/DashBoardAllProducts';
+import OrderDeliveryTime from '../Pages&Components/Pages/OrderDeliveryTime/OrderDeliveryTime';
+import AllProduct from '../Pages&Components/Pages/AllProduct/AllProduct';
+import CategoryProducts from '../Pages&Components/Pages/CategoryProducts/CategoryProducts';
+import DashBoardAllOrders from '../Pages&Components/Pages/DashBoardAllOrders/DashBoardAllOrders';
+import DashBoardInfo from '../Pages&Components/Pages/DashBoardInfo/DashBoardInfo';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Main />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/",
+        path: '/',
         element: <Home />,
       },
       {
-        path: "/allCategory",
+        path: '/allCategory',
         element: <AllCategory />,
       },
       {
-        path: "/restaurants",
+        path: '/restaurants',
         element: <Restaurants />,
       },
       {
-        path: "/products",
+        path: '/products',
         element: <AllProduct />,
       },
       {
-        path: "/allProduct/:catName",
+        path: '/allProduct/:catName',
         loader: ({ params }) =>
           fetch(
             `https://express-food-server.vercel.app/catProducts/${params.catName}`
@@ -54,7 +55,7 @@ const router = createBrowserRouter([
         element: <CategoryProducts />,
       },
       {
-        path: "/restaurant/:id",
+        path: '/restaurant/:id',
         loader: ({ params }) =>
           fetch(
             `https://express-food-server.vercel.app/allRestaurants/${params.id}`
@@ -62,7 +63,7 @@ const router = createBrowserRouter([
         element: <Restaurant />,
       },
       {
-        path: "/cart",
+        path: '/cart',
         element: (
           <PrivateRoute>
             <Cart />
@@ -70,7 +71,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/deliveryTime",
+        path: '/deliveryTime',
         element: (
           <PrivateRoute>
             <OrderDeliveryTime />
@@ -78,19 +79,19 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/login",
+        path: '/login',
         element: <Login />,
       },
       {
-        path: "/signUp",
+        path: '/signUp',
         element: <SignUp />,
       },
       {
-        path: "/restaurantReg",
+        path: '/restaurantReg',
         element: <RestaurantRegister />,
       },
       {
-        path: "/deliveryManReg",
+        path: '/deliveryManReg',
         element: <RegisterDeliveryMan />,
       },
       // {
@@ -100,7 +101,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/dashboard",
+    path: '/dashboard',
     element: (
       <PrivateRoute>
         <Dashboard />
@@ -108,7 +109,15 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "/dashboard/allOrders",
+        path: '/dashboard',
+        element: (
+          <PrivateRoute>
+            <DashBoardInfo />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/dashboard/allOrders',
         element: (
           <RestaurantOwnerRoute>
             <DashBoardAllOrders />
@@ -116,7 +125,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/addProduct",
+        path: '/dashboard/addProduct',
         element: (
           <RestaurantOwnerRoute>
             <AddProducts />
@@ -124,19 +133,19 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/allProduct",
+        path: '/dashboard/allProduct',
         element: (
-          <RestaurantOwnerRoute>
+          <PrivateRoute>
             <DashBoardAllProducts />
-          </RestaurantOwnerRoute>
+          </PrivateRoute>
         ),
       },
       {
-        path: "/dashboard/addRestaurant",
+        path: '/dashboard/addRestaurant',
         element: <RestaurantRegister />,
       },
       {
-        path: "/dashboard/allRestaurant",
+        path: '/dashboard/allRestaurant',
         element: (
           <AdminRoute>
             <DashBoardRestaurantInfo />
@@ -144,7 +153,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/addDeliveryMan",
+        path: '/dashboard/addDeliveryMan',
         element: (
           <AdminRoute>
             <RegisterDeliveryMan />
@@ -152,7 +161,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/allDeliveryMan",
+        path: '/dashboard/allDeliveryMan',
         element: (
           <AdminRoute>
             <DashBoardDeliveryMan />
