@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
 const Loading = () => {
   return (
-    <div className="h-screen w-full grid place-content-center ">
-      <h1 className="text-9xl font-bold text-gray-900">Loading........</h1>
+    <div className="max-w-screen-2xl w-full mx-auto h-screen grid place-content-center">
+      <span className="animate-spin mr-3 text-2xl font-bold">Loading...</span>
     </div>
   );
 };

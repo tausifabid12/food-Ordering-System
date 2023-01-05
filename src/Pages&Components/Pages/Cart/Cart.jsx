@@ -1,12 +1,12 @@
-import React from "react";
-import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
-import { useProducts } from "../../../Contexts/ProductProvider/ProductProvider";
-import useCart from "../../../Hooks/useCart/useCart";
-import useRestaurantInfo from "../../../Hooks/UseRestaurantInfo/UseRestaurantInfo";
-import CartProductInfo from "./CartProductInfo/CartProductInfo";
+import React from 'react';
+import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
+import { useProducts } from '../../../Contexts/ProductProvider/ProductProvider';
+import useCart from '../../../Hooks/useCart/useCart';
+import useRestaurantInfo from '../../../Hooks/UseRestaurantInfo/UseRestaurantInfo';
+import CartProductInfo from './CartProductInfo/CartProductInfo';
 
 const Cart = () => {
   const [cartProducts, refetch] = useCart();
@@ -16,7 +16,7 @@ const Cart = () => {
   } = useProducts();
   const { user } = useContext(AuthContext);
   const [restaurantInfo] = useRestaurantInfo();
-  console.log(restaurantInfo, "this is restaurant info");
+  console.log(restaurantInfo, 'this is restaurant info');
 
   // if (cartProducts?.data.length) {
   // }
@@ -28,24 +28,22 @@ const Cart = () => {
 
   const handleDelete = (id) => {
     fetch(`https://express-food-server.vercel.app/cart/${id}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        authorization: `bearer ${localStorage.getItem('accessToken')}`,
       },
     })
       .then((res) => res.json())
       .then((data) => {
-        toast.error("item deleted", {
-          position: "top-center",
+        toast.error('item deleted', {
+          position: 'top-center',
         });
         refetch();
       });
   };
 
   const handleConfirmOrder = () => {
-    //  cartProducts?.data.length &&
     const confirmProductsInfo = cartItemsInfo.map((p) => {
-      console.log(p);
       return {
         productId: p?._id,
         img: p?.imgUrl,
@@ -53,16 +51,16 @@ const Cart = () => {
         restaurantEmail: p?.email,
         ProductName: p?.productName,
         UserEmail: user?.email,
+        status: 'new',
       };
     });
+    console.log(confirmProductsInfo);
 
-    console.log(confirmProductsInfo, "this is confirm");
-
-    fetch(`https://express-food-server.vercel.app/addOrder`, {
-      method: "POST",
+    fetch(`http://localhost:5000/addOrder`, {
+      method: 'PUT',
       headers: {
-        "content-type": "application/json",
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        'content-type': 'application/json',
+        authorization: `bearer ${localStorage.getItem('accessToken')}`,
       },
       body: JSON.stringify({
         orderProductsInfo: confirmProductsInfo,
@@ -71,24 +69,26 @@ const Cart = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.status) {
+          console.log(data, 'this is first');
           fetch(
             `https://express-food-server.vercel.app/clearCart/${user?.email}`,
             {
-              method: "DELETE",
+              method: 'DELETE',
               headers: {
-                authorization: `bearer ${localStorage.getItem("accessToken")}`,
+                authorization: `bearer ${localStorage.getItem('accessToken')}`,
               },
             }
           )
             .then((res) => res.json())
             .then((data) => {
               if (data?.status) {
+                console.log(data);
                 refetch();
-                navigate("/deliveryTime");
+                navigate('/deliveryTime');
               }
             });
         } else {
-          toast.error("Sorry something went wrong");
+          toast.error('Sorry something went wrong');
         }
       });
   };

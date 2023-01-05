@@ -1,17 +1,20 @@
-import "./App.css";
-import "react-toastify/dist/ReactToastify.css";
+import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
 
-import { ToastContainer } from "react-toastify";
-import { RouterProvider } from "react-router-dom";
-import router from "./Routes/Routes";
-import ProductProvider from "./Contexts/ProductProvider/ProductProvider";
+import { ToastContainer } from 'react-toastify';
+import { RouterProvider } from 'react-router-dom';
+import router from './Routes/Routes';
+import ProductProvider from './Contexts/ProductProvider/ProductProvider';
+import useUserData from './Hooks/UseUserData/UseUserData';
+import Loading from './Pages&Components/Pages/Loading/Loading';
 
 function App() {
-  // const override: CSSProperties = {
-  //   display: "block",
-  //   margin: "0 auto",
-  //   borderColor: "red",
-  // };
+  const [userInfo, isLoading] = useUserData();
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+
   return (
     <div className="max-w-[1500px] mx-auto  bg-white">
       <ProductProvider>

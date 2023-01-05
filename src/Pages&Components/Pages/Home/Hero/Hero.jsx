@@ -1,5 +1,5 @@
-import React from "react";
-import hero1 from "../../../../Assets/HeroImg/hero0.1.jpg";
+import React from 'react';
+import hero1 from '../../../../Assets/HeroImg/hero0.1.jpg';
 // import heroImg1 from "../../../../Assets/HeroImg/hero2.jpg";
 
 const Hero = () => {
@@ -7,7 +7,7 @@ const Hero = () => {
     <div className="">
       <div className="hidden lg:block  ">
         <div
-          className="hero min-h-screen relative"
+          className="hero min-h-screen "
           style={{
             backgroundImage: ` url(${hero1})`,
           }}
@@ -28,15 +28,15 @@ const Hero = () => {
         </div>
       </div>
       <div className="block w-full lg:hidden py-9 ">
-        <div className="mx-auto max-w-full  md:w-1/2">
-          <h2 className="text-3xl font-bold px-4">
+        <div className="mx-auto max-w-full  px-4 md:w-1/2">
+          <h2 className="text-[40px] font-bold ">
             <span>Find Your Favorite</span> <br />
             <span className="text-primary mt-3">Food</span>
           </h2>
           <input
             type="text"
             placeholder="Search here"
-            className="input  rounded-lg text-primary bg-base-100 border border-gray-300 min-w-[280px]  mt-5 ml-4 max-w-full "
+            className="input  rounded-lg text-primary bg-base-100 border border-gray-300 w-full  mt-5 max-w-full "
           />
         </div>
       </div>

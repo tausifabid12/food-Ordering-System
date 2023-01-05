@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { useContext } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
-import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
+import React, { useState } from 'react';
+import { useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 
 const RegisterDeliveryMan = () => {
   const [isAdded, setIsAdded] = useState(true);
   const { createUser } = useContext(AuthContext);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const {
     register,
     handleSubmit,
@@ -29,13 +29,13 @@ const RegisterDeliveryMan = () => {
             phoneNumber,
             nid,
             deliveryManType,
-            role: "deliveryMan",
+            role: 'deliveryMan',
           };
           fetch(`https://express-food-server.vercel.app/addDeliveryMan`, {
-            method: "POST",
+            method: 'POST',
             headers: {
-              "content-type": "application/json",
-              authorization: `bearer ${localStorage.getItem("accessToken")}`,
+              'content-type': 'application/json',
+              authorization: `bearer ${localStorage.getItem('accessToken')}`,
             },
             body: JSON.stringify(deliveryManInfo),
           })
@@ -46,7 +46,7 @@ const RegisterDeliveryMan = () => {
                 toast.success(
                   "You have resisted successfully please wait for admin's conformation",
                   {
-                    position: "top-center",
+                    position: 'top-center',
                     autoClose: 5000,
                   }
                 );
@@ -66,15 +66,15 @@ const RegisterDeliveryMan = () => {
   };
 
   return (
-    <section class="bg-white dark:bg-gray-900">
+    <section class="bg-white dark:bg-gray-900 mx-3 lg:mx-40">
       <div class="flex justify-center min-h-screen ">
-        <div class="flex items-center w-full p-8 mx-auto lg:px-12 ">
+        <div class="flex pt-12 w-full  mx-auto lg:px-12 ">
           <div class="w-full">
-            <h1 class="text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white">
-              Get your free account now.
+            <h1 class="text-4xl font-semibold tracking-wider text-gray-900 capitalize dark:text-white">
+              Register Your account now.
             </h1>
 
-            <p class="mt-4 text-gray-500 dark:text-gray-400">
+            <p class="mt-4 text-gray-800 dark:text-gray-400">
               Let’s get you all set up so you can verify your personal account
               and begin setting up your profile.
             </p>
@@ -89,15 +89,15 @@ const RegisterDeliveryMan = () => {
               class="grid grid-cols-2 gap-6 mt-8 "
             >
               <div>
-                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+                <label className="block mb-2 text-sm text-gray-900 dark:text-gray-200">
                   User Name
                 </label>
                 <input
                   type="text"
                   name="userName"
-                  {...register("userName", { required: true })}
+                  {...register('userName', { required: true })}
                   placeholder="John"
-                  className="block w-full px-5 py-3 mt-2 text-gray-900 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:primary dark:focus:primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full px-5 py-3 mt-2 text-gray-900 placeholder-gray-600 bg-white border border-gray-300 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:primary dark:focus:primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40"
                 />
                 {errors.userName && (
                   <span className="text-red-500 pt-2">This is required</span>
@@ -105,28 +105,28 @@ const RegisterDeliveryMan = () => {
               </div>
 
               <div>
-                <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+                <label class="block mb-2 text-sm text-gray-900 dark:text-gray-200">
                   Phone number
                 </label>
                 <input
                   type="text"
-                  {...register("phoneNumber", { required: true })}
+                  {...register('phoneNumber', { required: true })}
                   placeholder="XXX-XX-XXXX-XXX"
-                  className="block w-full px-5 py-3 mt-2 text-gray-900 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:primary dark:focus:primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full px-5 py-3 mt-2 text-gray-900 placeholder-gray-600 bg-white border border-gray-300 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:primary dark:focus:primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40"
                 />
                 {errors.phoneNumber && (
                   <span className="text-red-500 pt-2">This is required</span>
                 )}
               </div>
               <div>
-                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+                <label className="block mb-2 text-sm text-gray-900 dark:text-gray-200">
                   Email address
                 </label>
                 <input
                   type="email"
-                  {...register("email", { required: true })}
+                  {...register('email', { required: true })}
                   placeholder="johnsnow@example.com"
-                  className="block w-full px-5 py-3 mt-2 text-gray-900 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:primary dark:focus:primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full px-5 py-3 mt-2 text-gray-900 placeholder-gray-600 bg-white border border-gray-300 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:primary dark:focus:primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40"
                 />
                 {errors.email && (
                   <span className="text-red-500 pt-2">This is required</span>
@@ -134,14 +134,14 @@ const RegisterDeliveryMan = () => {
               </div>
 
               <div>
-                <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+                <label class="block mb-2 text-sm text-gray-900 dark:text-gray-200">
                   NID
                 </label>
                 <input
                   type="text"
-                  {...register("nid", { required: true })}
+                  {...register('nid', { required: true })}
                   placeholder="XXX-XX-XXXX"
-                  className="block w-full px-5 py-3 mt-2 text-gray-900 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:primary dark:focus:primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full px-5 py-3 mt-2 text-gray-900 placeholder-gray-600 bg-white border border-gray-300 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:primary dark:focus:primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40"
                 />
                 {errors.nid && (
                   <span className="text-red-500 pt-2">This is required</span>
@@ -157,9 +157,9 @@ const RegisterDeliveryMan = () => {
                   //   required: true,
                   // })}
                   name="deliveryManType"
-                  {...register("deliveryManType", { required: true })}
+                  {...register('deliveryManType', { required: true })}
                   id="deliveryManType"
-                  className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40  "
+                  className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-600 bg-white border border-gray-300 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40  "
                 >
                   <option defaultValue>Freelancer</option>
                   <option>Salary Based</option>
@@ -170,22 +170,22 @@ const RegisterDeliveryMan = () => {
               </div>
 
               <div>
-                <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+                <label class="block mb-2 text-sm text-gray-900 dark:text-gray-200">
                   password
                 </label>
                 <input
                   type="password"
-                  {...register("password", {
+                  {...register('password', {
                     required: true,
                     minLength: 6,
                   })}
                   placeholder="Enter your password"
-                  className="block w-full px-5 py-3 mt-2 text-gray-900 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:primary dark:focus:primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full px-5 py-3 mt-2 text-gray-900 placeholder-gray-600 bg-white border border-gray-300 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:primary dark:focus:primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40"
                 />
-                {errors.password && errors.password.type === "required" && (
+                {errors.password && errors.password.type === 'required' && (
                   <span className="text-red-500 pt-2">This is required</span>
                 )}
-                {errors.password && errors.password.type === "minLength" && (
+                {errors.password && errors.password.type === 'minLength' && (
                   <span className="text-red-500 pt-2">
                     Password must have 6 character
                   </span>
@@ -197,7 +197,7 @@ const RegisterDeliveryMan = () => {
                   <input
                     type="submit"
                     defaultValue="Add Product For Sale"
-                    className="btn btn-primary w-full ring-0  rounded-md   text-white"
+                    className="btn btn-primary w-full ring-0  rounded-md   text-gray-900 font-semibold"
                   />
                 ) : (
                   <button className="btn loading w-full">loading</button>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const OrdersTable = ({ header, body, handleAction, handleDelete, loading }) => {
+const OrderStateTable = ({ header, body, handleAction, loading }) => {
   return (
     <div className="overflow-x-auto w-full">
       <table className="table w-full">
@@ -40,7 +40,7 @@ const OrdersTable = ({ header, body, handleAction, handleDelete, loading }) => {
                 </td>
                 <td>
                   <button
-                    onClick={() => handleAction(data?._id)}
+                    onClick={() => handleAction(data?.productId)}
                     className={`btn btn-xs ${
                       data?.approved
                         ? 'btn-disabled'
@@ -58,4 +58,4 @@ const OrdersTable = ({ header, body, handleAction, handleDelete, loading }) => {
   );
 };
 
-export default OrdersTable;
+export default OrderStateTable;
