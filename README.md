@@ -6,7 +6,11 @@ Super admin can add or approve Restaurants and Delivery Man, can see or delete a
 
 Explore the web site [EXPRESS FOOD ](https://easy-food-e36c0.web.app/)
 
-### `Admin Email: tmabid12@gamil.com`
+### `Restaurant Owner Email: restauran@1.com`
+
+### `Password: 129400`
+
+### `Admin Email: super@admin.com`
 
 ### `Password: 129400`
 
