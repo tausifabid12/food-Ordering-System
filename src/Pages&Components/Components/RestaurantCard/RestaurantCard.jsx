@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const RestaurantCard = ({ info }) => {
   const { _id, restaurantName, location, coverImg } = info;
@@ -9,8 +9,8 @@ const RestaurantCard = ({ info }) => {
         <figure>
           <img
             src={coverImg}
-            className="rounded-t-md transition  duration-200 ease-linear lg:hover:scale-125"
-            alt="Restaurant"
+            className="rounded-t-md transition duration-200 ease-linear lg:hover:scale-125"
+            alt="RestaurantImg"
           />
         </figure>
         <div className="card-body">

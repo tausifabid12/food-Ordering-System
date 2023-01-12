@@ -1,15 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const AllRestaurantCard = ({ info }) => {
   const { _id, restaurantName, location, deliveryTime, coverImg } = info;
   return (
     <Link to={`/restaurant/${_id}`}>
       <div className="card card-side w-full h-40  lg:h-44  lg:p-2 bg-base-100 rounded-md shadow-md ">
-        <div className=" min-w-5/12 max-w-5/12 rounded-md">
+        <div className="w-2/5 rounded-md">
           <img
             src={coverImg}
-            className="w-full min-h-full max-h-full p-1 rounded-md "
+            className="w-full min-h-full max-h-full p-1 rounded-lg "
             alt="Movie"
           />
         </div>

@@ -56,7 +56,7 @@ const Cart = () => {
     });
     console.log(confirmProductsInfo);
 
-    fetch(`http://localhost:5000/addOrder`, {
+    fetch(`https://express-food-server.vercel.app/addOrder`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',

@@ -24,45 +24,6 @@ const Dashboard = () => {
         <div className="drawer-side w-72">
           <label htmlFor="dashboardDrawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-full  text-base-content ">
-            {userInfo?.role === 'restaurantOwner' && (
-              <div className="collapse">
-                <input type="checkbox" />
-                <>
-                  <li className="collapse-title p-0 text-sm  font-medium">
-                    <h3 className="text-sm  font-bold">
-                      Order Management
-                      <span>
-                        <FaAngleDown />
-                      </span>
-                    </h3>
-                  </li>
-                </>
-                <div className="collapse-content">
-                  <ul className="menu bg-base-100 text-base-content ">
-                    {/* <li className=" text-sm  font-medium rounded-md">
-                    <Link to="/dashboard/addProduct">My Orders</Link>
-                  </li> */}
-
-                    <>
-                      <li className=" text-sm  font-medium">
-                        <Link to="/dashboard/allOrders">All Orders</Link>
-                      </li>
-                      <li className="text-sm  font-medium">
-                        <Link to="/dashboard/addProduct">Cooking</Link>
-                      </li>
-                      <li className=" text-sm  font-medium">
-                        <Link to="/dashboard/addProduct">
-                          Ready For delivery
-                        </Link>
-                      </li>
-                      <li className=" text-sm  font-medium">
-                        <Link to="/dashboard/addProduct">Delivered</Link>
-                      </li>
-                    </>
-                  </ul>
-                </div>
-              </div>
-            )}
             <div className="collapse">
               <input type="checkbox" />
               <>
@@ -94,6 +55,46 @@ const Dashboard = () => {
                 </ul>
               </div>
             </div>
+            {userInfo?.role === 'restaurantOwner' && (
+              <div className="collapse">
+                <input type="checkbox" />
+                <>
+                  <li className="collapse-title p-0 text-sm  font-medium">
+                    <h3 className="text-sm  font-bold">
+                      Order Management
+                      <span>
+                        <FaAngleDown />
+                      </span>
+                    </h3>
+                  </li>
+                </>
+                <div className="collapse-content">
+                  <ul className="menu bg-base-100 text-base-content ">
+                    {/* <li className=" text-sm  font-medium rounded-md">
+                    <Link to="/dashboard/addProduct">My Orders</Link>
+                  </li> */}
+
+                    <>
+                      <li className=" text-sm  font-medium">
+                        <Link to="/dashboard/allOrders">All Orders</Link>
+                      </li>
+                      {/* <li className="text-sm  font-medium">
+                        <Link to="/dashboard/addProduct">Cooking</Link>
+                      </li>
+                      <li className=" text-sm  font-medium">
+                        <Link to="/dashboard/addProduct">
+                          Ready For delivery
+                        </Link>
+                      </li>
+                      <li className=" text-sm  font-medium">
+                        <Link to="/dashboard/addProduct">Delivered</Link>
+                      </li> */}
+                    </>
+                  </ul>
+                </div>
+              </div>
+            )}
+
             {userInfo?.role === 'admin' && (
               <div className="collapse">
                 <input type="checkbox" />

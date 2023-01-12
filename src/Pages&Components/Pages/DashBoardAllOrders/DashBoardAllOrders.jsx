@@ -11,18 +11,21 @@ const DashBoardAllOrders = () => {
   const { data: allOrders = [] } = useQuery({
     queryKey: ['allOrders', user?.email],
     queryFn: () =>
-      fetch(`http://localhost:5000/allOrders?email=${user?.email}`, {
-        headers: {
-          authorization: `bearer ${localStorage.getItem('accessToken')}`,
-        },
-      }).then((res) => res.json()),
+      fetch(
+        `https://express-food-server.vercel.app/allOrders?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem('accessToken')}`,
+          },
+        }
+      ).then((res) => res.json()),
   });
 
   const handleStartCooking = (id) => {
     const updateInfo = { email: user?.email, status: 'ready', id: id };
     console.log(updateInfo);
 
-    fetch(`http://localhost:5000/updateOrder`, {
+    fetch(`https://express-food-server.vercel.app/updateOrder`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',

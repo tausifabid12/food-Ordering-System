@@ -1,10 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const CategoryCard = ({ info: { strCategoryThumb, strCategory } }) => {
   return (
     <Link to={`/allProduct/${strCategory}`}>
-      <div className="card card-side bg-base-100 shadow-md">
+      <div className="card card-side bg-base-100 shadow-md transition duration-200 ease-linear lg:hover:scale-90">
         <figure>
           <img
             src={strCategoryThumb}
