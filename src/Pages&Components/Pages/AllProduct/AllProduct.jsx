@@ -1,17 +1,22 @@
-import { useQuery } from "@tanstack/react-query";
-import React from "react";
-import ProductCard from "../../Components/ProductCard/ProductCard";
+import { useQuery } from '@tanstack/react-query';
+import React from 'react';
+import ProductCard from '../../Components/ProductCard/ProductCard';
+import Loading from '../Loading/Loading';
 
 const AllProduct = () => {
-  const { data: products = [] } = useQuery({
-    queryKey: ["products"],
+  const { data: products = [], isLoading } = useQuery({
+    queryKey: ['products'],
     queryFn: () =>
       fetch(`https://express-food-server.vercel.app/allProduct`, {
         headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          authorization: `bearer ${localStorage.getItem('accessToken')}`,
         },
       }).then((res) => res.json()),
   });
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
   return (
     <div className="md:pl-12 md:pt-8 p-2 max-w-full">
       <div className="flex justify-between items-center px-0 ">

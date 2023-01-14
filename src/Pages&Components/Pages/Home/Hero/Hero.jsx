@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import hero1 from '../../../../Assets/HeroImg/hero0.1.jpg';
 // import heroImg1 from "../../../../Assets/HeroImg/hero2.jpg";
 
 const Hero = () => {
   return (
-    <div className="">
+    <div className="" data-aos="fade-down">
       <div className="hidden lg:block  ">
         <div
           className="hero min-h-screen "
@@ -16,13 +17,17 @@ const Hero = () => {
             <div className="max-w-lg pl-10 space-y-10">
               <h1 className="mb-5 text-7xl font-bold">Express Food</h1>
               <p className="mb-5">
-                Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                assumenda excepturi exercitationem quasi. In deleniti eaque aut
-                repudiandae et a id nisi.
+                We made it easily to place an order when you are stuck in
+                traffic or on the way to pick up the kids. We provide the
+                freedom to order from any place at any time without pausing
+                everything and making a call to the restaurant.
               </p>
-              <button className="btn btn-primary text-gray-900 font-bold transition duration-250 ease-in hover:bg-transparent  hover:border-2">
-                Get Started
-              </button>
+              <Link
+                to="/signUp"
+                className="btn btn-primary text-gray-900 font-bold transition duration-250 ease-in hover:bg-transparent  hover:border-2"
+              >
+                Join Us Now
+              </Link>
             </div>
           </div>
         </div>

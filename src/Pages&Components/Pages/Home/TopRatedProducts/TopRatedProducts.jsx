@@ -1,21 +1,21 @@
-import { useQuery } from "@tanstack/react-query";
-import React from "react";
-import { Link } from "react-router-dom";
-import ProductCard from "../../../Components/ProductCard/ProductCard";
+import { useQuery } from '@tanstack/react-query';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import ProductCard from '../../../Components/ProductCard/ProductCard';
 
 const TopRatedProducts = () => {
   const { data: products = [] } = useQuery({
-    queryKey: ["products"],
+    queryKey: ['products'],
     queryFn: () =>
       fetch(`https://express-food-server.vercel.app/allProduct?limit=3`, {
         headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          authorization: `bearer ${localStorage.getItem('accessToken')}`,
         },
       }).then((res) => res.json()),
   });
 
   return (
-    <div className="pl-2 lg:pl-12 p-2 max-w-full">
+    <div className=" p-2 lg:p-5 max-w-full">
       <div className="flex justify-between items-center px-0 ">
         <h2 className="text-xl md:text-3xl font-bold pl-2">
           Top Rated Products

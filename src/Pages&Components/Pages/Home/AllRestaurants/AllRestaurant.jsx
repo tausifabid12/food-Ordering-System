@@ -1,20 +1,20 @@
-import React from "react";
-import { useQuery } from "@tanstack/react-query";
-import AllRestaurantCard from "./AllRestaurantCard/AllRestaurantCard";
+import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import AllRestaurantCard from './AllRestaurantCard/AllRestaurantCard';
 
 const AllRestaurant = () => {
   const { data: restaurants = [] } = useQuery({
-    queryKey: ["restaurants"],
+    queryKey: ['restaurants'],
     queryFn: () =>
       fetch(`https://express-food-server.vercel.app/allRestaurants`, {
         headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          authorization: `bearer ${localStorage.getItem('accessToken')}`,
         },
       }).then((res) => res.json()),
   });
 
   return (
-    <div className="pl-1 lg:pl-12 md:pt-8 p-2 max-w-full">
+    <div className="p-2 lg:p-5 md:pt-8  max-w-full">
       <div className="flex justify-between items-center px-0 ">
         <h2 className="text-2xl md:text-3xl font-bold pl-3">All Restaurants</h2>
       </div>
