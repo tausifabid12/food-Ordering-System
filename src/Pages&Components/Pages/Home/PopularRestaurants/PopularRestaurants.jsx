@@ -17,7 +17,7 @@ const PopularRestaurants = () => {
   console.log(restaurants);
 
   return (
-    <div className="pl-2 lg:pl-12 md:pt-8 p-2 max-w-full" data-aos="fade-left">
+    <div className=" pl-2 lg:pl-12 md:pt-8 p-2 max-w-full" data-aos="fade-left">
       <div className="flex justify-between items-center  pl-3 ">
         <h2 className="text-xl md:text-3xl font-bold ">PopularRestaurants</h2>
         <Link to="restaurants">

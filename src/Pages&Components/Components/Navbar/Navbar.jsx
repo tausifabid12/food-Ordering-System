@@ -22,12 +22,12 @@ const Nav = () => {
   }, []);
 
   const navList = (
-    <ul className="mb-4 mt-2 text-gray-900 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-1">
+    <ul className="mb-4 mt-2 text-gray-900 font-semibold flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-1">
       <>
         <li>
           <Link
             to="/"
-            className=" rounded-md px-3 py-2  transition duration-150 ease-in hover:text-white hover:bg-primary  "
+            className=" rounded-md px-3 py-3  transition duration-150 ease-in hover:text-white hover:bg-primary  "
           >
             Home
           </Link>
@@ -35,11 +35,12 @@ const Nav = () => {
         <li>
           <Link
             to="/products"
-            className=" rounded-md px-3 py-2  transition duration-150 ease-in hover:text-white hover:bg-primary "
+            className=" rounded-md px-3 py-3  transition duration-150 ease-in hover:text-white hover:bg-primary "
           >
             Products
           </Link>
         </li>
+
         {/* <li>
           <Link
             to="/"
@@ -53,7 +54,7 @@ const Nav = () => {
           <li>
             <Link
               to="/dashboard"
-              className=" rounded-md px-3 py-2  transition duration-150 ease-in hover:text-white hover:bg-primary "
+              className=" rounded-md px-3 py-3  transition duration-150 ease-in hover:text-white hover:bg-primary "
             >
               Dashboard
             </Link>
@@ -62,43 +63,51 @@ const Nav = () => {
           ''
         )}
         <li>
-          {userInfo && userInfo?.role !== 'restaurantOwner' && (
-            <div className="">
-              <Link
-                to="/cart"
-                className="hidden lg:block rounded-md px-3 py-2  transition duration-150 ease-in hover:text-white hover:bg-primary "
-              >
-                <p className="flex items-center justify-center px-2">
-                  <span className="pr-2">Cart</span>
+          {/* {userInfo && userInfo?.role !== 'restaurantOwner' && ( */}
+          <div className="">
+            <Link
+              to="/cart"
+              className="hidden lg:block rounded-md px-3 py-2  transition duration-150 ease-in hover:text-white hover:bg-primary "
+            >
+              <p className="flex items-center justify-center px-2">
+                <span className="pr-2">Cart</span>
 
-                  <label tabIndex={0} className=" p-0">
-                    <div className="indicator">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                        />
-                      </svg>
-                      <span className="badge badge-sm indicator-item">
-                        {cartProducts?.data && cartProducts?.data.length}
-                      </span>
-                    </div>
-                  </label>
-                </p>
-              </Link>
-            </div>
-          )}
+                <label tabIndex={0} className=" p-0">
+                  <div className="indicator">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                      />
+                    </svg>
+                    <span className="badge badge-sm indicator-item">
+                      {cartProducts?.data && cartProducts?.data.length}
+                    </span>
+                  </div>
+                </label>
+              </p>
+            </Link>
+          </div>
+          {/* )} */}
+        </li>
+        <li>
+          <Link
+            to="/faq"
+            className=" rounded-md px-4 py-3  transition duration-150 ease-in hover:text-white hover:bg-primary "
+          >
+            F.A.Q
+          </Link>
         </li>
 
-        {user?.uid ? (
+        {/* {user?.uid ? (
           ''
         ) : (
           <>
@@ -119,7 +128,7 @@ const Nav = () => {
               </Link>
             </li>
           </>
-        )}
+        )} */}
       </>
     </ul>
   );
@@ -183,25 +192,19 @@ const Nav = () => {
               </div>
             ) : (
               <>
-                <div className="hidden lg:block  dropdown dropdown-bottom dropdown-end ">
-                  <label
-                    tabIndex={0}
-                    className="btn btn-primary btn-xs lg:btn-sm "
-                  >
-                    Join us
-                  </label>
-                  <ul
-                    tabIndex={0}
-                    className="dropdown-content menu p-2 shadow-md bg-white  rounded-box w-52"
-                  >
-                    <li>
-                      <Link to="/deliveryManReg">As a Delivery Man</Link>
-                    </li>
-                    <li>
-                      <Link to="/restaurantReg">As a Restaurant</Link>
-                    </li>
-                  </ul>
-                </div>
+                <Link
+                  to="/login"
+                  className=" rounded-md px-3 py-2 font-semibold transition duration-150 ease-in hover:text-primary"
+                >
+                  Log in
+                </Link>
+
+                <Link
+                  to="/signUp"
+                  className=" rounded-md px-3 py-2 font-semibold transition duration-150 ease-in  bg-primary "
+                >
+                  SignUP
+                </Link>
               </>
             )}
 

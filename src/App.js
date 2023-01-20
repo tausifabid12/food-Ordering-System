@@ -15,7 +15,9 @@ function App() {
   const [userInfo, isLoading] = useUserData();
 
   useEffect(() => {
-    AOS.init();
+    AOS.init({
+      duration: 1000,
+    });
   }, []);
 
   if (isLoading) {

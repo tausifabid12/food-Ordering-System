@@ -14,7 +14,7 @@ const Categories = () => {
   });
 
   return (
-    <div className="py-6 pl-4 lg:pl-0" data-aos="fade-right">
+    <div className="w-full py-6 pl-4 lg:pl-0" data-aos="fade-right">
       <div className="flex justify-between  lg:p-2 bg-white">
         <h2 className="text-2xl md:text-3xl  font-bold ">Categories</h2>
       </div>

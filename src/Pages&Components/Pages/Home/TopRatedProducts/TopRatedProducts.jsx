@@ -7,7 +7,7 @@ const TopRatedProducts = () => {
   const { data: products = [] } = useQuery({
     queryKey: ['products'],
     queryFn: () =>
-      fetch(`https://express-food-server.vercel.app/allProduct?limit=3`, {
+      fetch(`https://express-food-server.vercel.app/allProduct?limit=6`, {
         headers: {
           authorization: `bearer ${localStorage.getItem('accessToken')}`,
         },
@@ -15,7 +15,11 @@ const TopRatedProducts = () => {
   });
 
   return (
-    <div className=" p-2 lg:p-5 max-w-full">
+    <div
+      className=" p-2  max-w-full"
+      data-aos="fade-left"
+      data-aos-anchor-placement="center-bottom"
+    >
       <div className="flex justify-between items-center px-0 ">
         <h2 className="text-xl md:text-3xl font-bold pl-2">
           Top Rated Products

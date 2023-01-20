@@ -23,6 +23,7 @@ import AllProduct from '../Pages&Components/Pages/AllProduct/AllProduct';
 import CategoryProducts from '../Pages&Components/Pages/CategoryProducts/CategoryProducts';
 import DashBoardAllOrders from '../Pages&Components/Pages/DashBoardAllOrders/DashBoardAllOrders';
 import DashBoardInfo from '../Pages&Components/Pages/DashBoardInfo/DashBoardInfo';
+import Faq from '../Pages&Components/Pages/Faq/Faq';
 
 const router = createBrowserRouter([
   {
@@ -64,11 +65,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/cart',
-        element: (
-          <PrivateRoute>
-            <Cart />
-          </PrivateRoute>
-        ),
+        element: <Cart />,
       },
       {
         path: '/deliveryTime',
@@ -93,6 +90,10 @@ const router = createBrowserRouter([
       {
         path: '/deliveryManReg',
         element: <RegisterDeliveryMan />,
+      },
+      {
+        path: '/faq',
+        element: <Faq />,
       },
       // {
       //   path: "/AllRestaurant",
